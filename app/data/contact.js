@@ -8,40 +8,40 @@ import faEnvelope from '@fortawesome/fontawesome-free-regular/faEnvelope';
 
 const data = [
   {
-    link: 'https://github.com/mldangelo',
+    link: 'https://github.com/daviswhitehead',
     label: 'Github',
-    icon: faGithub,
+    icon: faGithub
   },
   {
-    link: 'https://facebook.com/d',
+    link: 'https://www.facebook.com/whitehead.davis',
     label: 'Facebook',
-    icon: faFacebook,
+    icon: faFacebook
   },
   {
-    link: 'https://www.instagram.com/dangelosaurus/',
+    link: 'https://www.instagram.com/whitehead.davis/',
     label: 'Instagram',
-    icon: faInstagram,
+    icon: faInstagram
   },
   {
-    link: 'https://www.linkedin.com/in/michaelldangelo',
+    link: 'https://www.linkedin.com/in/daviswhitehead/',
     label: 'LinkedIn',
-    icon: faLinkedinIn,
+    icon: faLinkedinIn
   },
   {
-    link: 'https://angel.co/michael-d-angelo',
+    link: 'https://angel.co/davis-whitehead',
     label: 'Angel List',
-    icon: faAngellist,
+    icon: faAngellist
   },
   {
-    link: 'https://twitter.com/dangelosaurus',
+    link: 'https://twitter.com/dwhiteheadtime',
     label: 'Twitter',
-    icon: faTwitter,
+    icon: faTwitter
   },
   {
-    link: 'mailto:michael.l.dangelo@gmail.com',
+    link: 'mailto:whitehead.davis@gmail.com',
     label: 'Email',
-    icon: faEnvelope,
-  },
+    icon: faEnvelope
+  }
 ];
 
 export default data;

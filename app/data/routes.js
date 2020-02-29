@@ -1,29 +1,29 @@
 const data = [
   {
     path: '/',
-    label: 'Michael D\'Angelo',
-    index: true,
+    label: 'Davis Whitehead',
+    index: true
   },
   {
     path: '/about',
-    label: 'About',
+    label: 'About'
   },
   {
     path: '/resume',
-    label: 'Resume',
+    label: 'Resume'
   },
   {
     path: '/projects',
-    label: 'Projects',
+    label: 'Projects'
   },
   {
     path: '/stats',
-    label: 'Stats',
+    label: 'Stats'
   },
   {
     path: '/contact',
-    label: 'Contact',
-  },
+    label: 'Contact'
+  }
 ];
 
 export default data;
