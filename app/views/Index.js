@@ -21,7 +21,7 @@ const Index = () => (
         </div>
       </header>
       <ReactMarkdown
-        source={about.split("### Current Focus")[0]}
+        source={about.split("<br><br>")[0]}
         renderers={{
           Link: LinkRenderer,
         }}
