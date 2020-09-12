@@ -1,29 +1,21 @@
 const data = [
   {
-    path: '/',
-    label: 'Davis Whitehead',
-    index: true
+    path: "/",
+    label: "Davis Whitehead",
+    index: true,
   },
   {
-    path: '/about',
-    label: 'About'
+    path: "/about",
+    label: "About",
   },
   {
-    path: '/resume',
-    label: 'Resume'
+    path: "/projects",
+    label: "Projects",
   },
   {
-    path: '/projects',
-    label: 'Projects'
+    path: "/writing",
+    label: "Writing",
   },
-  {
-    path: '/stats',
-    label: 'Stats'
-  },
-  {
-    path: '/contact',
-    label: 'Contact'
-  }
 ];
 
 export default data;

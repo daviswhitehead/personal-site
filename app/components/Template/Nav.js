@@ -1,43 +1,28 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import data from '../../data/contact';
+import React from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import data from "../../data/contact";
 
 const Nav = () => (
-  <section id='sidebar'>
-    <section id='intro'>
-      <Link to='/' className='logo'>
-        <img src={`${BASE_PATH}/images/me_icon.jpg`} alt='' />
+  <section id="sidebar">
+    <section id="intro">
+      <Link to="/" className="logo">
+        <img src={`${BASE_PATH}/images/me.png`} alt="" />
       </Link>
       <header>
         <h2>Davis Whitehead</h2>
-        <p>
-          <a href='mailto:whitehead.davis@gmail.com'>
-            whitehead.davis@gmail.com
-          </a>
-        </p>
       </header>
-    </section>
-
-    <section className='blurb'>
-      <h2>About</h2>
       <p>
-        Hi, I&apos;m Davis. I like building things that solve meaningful
-        problems. I&apos;m currently a Product Manager working at{' '}
-        <a href='https://www.whoop.com/'>WHOOP</a>.
+        Hi, I&apos;m Davis. I'm a product maker intent on building things that
+        solve meaningful problems. I currently work as Product Manager at{" "}
+        <a href="https://www.whoop.com/">WHOOP</a> where I'm focused on leveling
+        up our customer support experience. In my free time, I'm most likely...
+        exercising, cooking, playing a game, reading, or dreaming about a new
+        product concept.
       </p>
-      <ul className='actions'>
-        <li>
-          <Link to='/about' className='button'>
-            Learn More
-          </Link>
-        </li>
-      </ul>
-    </section>
-
-    <section id='footer'>
-      <ul className='icons'>
-        {data.map(s => (
+      <p className="icons-intro">Follow me or get in touch!</p>
+      <ul className="icons">
+        {data.map((s) => (
           <li key={s.label}>
             <a href={s.link}>
               <FontAwesomeIcon icon={s.icon} />
@@ -45,8 +30,8 @@ const Nav = () => (
           </li>
         ))}
       </ul>
-      <p className='copyright'>
-        &copy; Davis Whitehead <Link to='/'>daviswhitehead.com</Link>.
+      <p className="copyright">
+        &copy; Davis Whitehead <Link to="/">daviswhitehead.com</Link>.
       </p>
     </section>
   </section>
