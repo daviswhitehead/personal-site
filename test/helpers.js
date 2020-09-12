@@ -1,4 +1,4 @@
-const randomString = length => {
+const randomString = (length) => {
   const x = 36 ** (length + 1);
   const y = 36 ** length;
   return Math.round(x - Math.random() * y)
@@ -8,30 +8,25 @@ const randomString = length => {
 
 const pages = [
   {
-    route: '/',
-    title: 'Davis Whitehead',
-    heading: 'ABOUT THIS SITE'
+    route: "/",
+    title: "Davis Whitehead",
+    heading: "ABOUT THIS SITE",
   },
   {
-    route: '/about',
-    title: 'About | Davis Whitehead',
-    heading: 'ABOUT ME'
+    route: "/about",
+    title: "About | Davis Whitehead",
+    heading: "ABOUT",
   },
   {
-    route: '/projects',
-    title: 'Projects | Davis Whitehead',
-    heading: 'PROJECTS'
+    route: "/projects",
+    title: "Projects | Davis Whitehead",
+    heading: "PROJECTS",
   },
   {
-    route: '/stats',
-    title: 'Stats | Davis Whitehead',
-    heading: 'STATS'
+    route: "/writing",
+    title: "Writing | Davis Whitehead",
+    heading: "WRITING",
   },
-  {
-    route: '/contact',
-    title: 'Contact | Davis Whitehead',
-    heading: 'CONTACT'
-  }
 ];
 
 export { pages, randomString };

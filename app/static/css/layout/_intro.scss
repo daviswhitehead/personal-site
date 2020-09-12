@@ -32,6 +32,10 @@
 			}
 		}
 
+		.icons-intro {
+			margin: 0 0 (_size(element-margin) * 0.1) 0;
+		}
+
 		@include breakpoint(large) {
 			margin: 0 0 _size(section-spacing) 0;
 			text-align: center;
