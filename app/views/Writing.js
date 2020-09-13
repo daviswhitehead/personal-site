@@ -6,7 +6,7 @@ import Main from "../layouts/Main";
 
 const Writing = () => {
   return (
-    <Main>
+    <Main fullPage>
       <Helmet title="Writing" />
       <article className="post" id="writing">
         <header>

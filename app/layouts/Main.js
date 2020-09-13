@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
-import ReactGA from 'react-ga';
-import Header from '../components/Template/Header';
-import Nav from '../components/Template/Nav';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import Helmet from "react-helmet";
+import ReactGA from "react-ga";
+import Header from "../components/Template/Header";
+import Nav from "../components/Template/Nav";
+import { Link } from "react-router-dom";
 
-if (NODE_ENV === 'production') {
+if (NODE_ENV === "production") {
   ReactGA.initialize(GA_ID);
 }
 
@@ -15,9 +16,9 @@ class Main extends Component {
   }
 
   componentDidMount() {
-    if (NODE_ENV === 'production') {
+    if (NODE_ENV === "production") {
       ReactGA.set({
-        page: window.location.pathname
+        page: window.location.pathname,
       });
       ReactGA.pageview(window.location.pathname);
     }
@@ -25,14 +26,21 @@ class Main extends Component {
 
   render() {
     return (
-      <div id='wrapper'>
-        <Helmet
-          titleTemplate='%s | Davis Whitehead'
-          defaultTitle='Davis Whitehead'
-        />
-        <Header />
-        <div id='main'>{this.props.children}</div>
-        {!this.props.fullPage && <Nav />}
+      <div>
+        <div id="wrapper">
+          <Helmet
+            titleTemplate="%s | Davis Whitehead"
+            defaultTitle="Davis Whitehead"
+          />
+          <Header />
+          <div id="main">{this.props.children}</div>
+          {!this.props.fullPage && <Nav />}
+        </div>
+        <div id="footer">
+          <p className="copyright">
+            &copy; Davis Whitehead <Link to="/">daviswhitehead.com</Link>
+          </p>
+        </div>
       </div>
     );
   }
@@ -41,14 +49,14 @@ class Main extends Component {
 Main.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
+    PropTypes.node,
   ]),
-  fullPage: PropTypes.bool
+  fullPage: PropTypes.bool,
 };
 
 Main.defaultProps = {
   children: null,
-  fullPage: false
+  fullPage: false,
 };
 
 export default Main;

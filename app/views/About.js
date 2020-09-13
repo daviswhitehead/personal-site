@@ -9,7 +9,7 @@ import markdown from "../data/about.md";
 const LinkRenderer = ({ ...children }) => <Link {...children} />;
 
 const About = () => (
-  <Main>
+  <Main fullPage>
     <Helmet title="About" />
     <article className="post" id="about">
       <header>

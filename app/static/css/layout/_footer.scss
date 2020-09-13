@@ -7,25 +7,25 @@
 /* Footer */
 
 	#footer {
-		.icons-intro {
-			margin-bottom: 0em;
-			color: "blue";
-		}
+		@include vendor('display', 'flex');
+		@include vendor('flex-direction', 'column');
+		@include vendor('align-items', 'left');
+		background-color: _palette(bg);
+		border-top: solid 1px _palette(border);
+		height: 3.5em;
+		line-height: 3.5em;
+		position: relative;
+		width: 100%;
+		z-index: _misc(z-index-base) - 2;
 
-		.icons {
-			color: _palette(fg-light);
+		@include breakpoint(large) {
+			@include vendor('align-items', 'center');
 		}
 
 		.copyright {
+			margin: 0 0 0 0;
+			margin-left: 1.5em;
 			color: _palette(fg-light);
-			font-family: _font(family-heading);
-			font-size: 0.5em;
-			font-weight: _font(weight-heading);
-			letter-spacing: _font(kerning-heading);
-			text-transform: uppercase;
 		}
 
-		body.single & {
-			text-align: center;
-		}
 	}

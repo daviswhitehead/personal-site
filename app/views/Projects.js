@@ -6,7 +6,7 @@ import Cell from "../components/Projects/Cell";
 import data from "../data/projects";
 
 const Projects = () => (
-  <Main>
+  <Main fullPage>
     <Helmet title="Projects" />
     <article className="post" id="projects">
       <header>

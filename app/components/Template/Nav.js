@@ -30,9 +30,6 @@ const Nav = () => (
           </li>
         ))}
       </ul>
-      <p className="copyright">
-        &copy; Davis Whitehead <Link to="/">daviswhitehead.com</Link>.
-      </p>
     </section>
   </section>
 );
