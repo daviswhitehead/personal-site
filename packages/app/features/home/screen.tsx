@@ -64,6 +64,13 @@ export function HomeScreen() {
           </Button>
         </SolitoLink>
       </Box>
+      <Box mt="6">
+        <SolitoLink href="/about">
+          <Button pointerEvents="none" variant="outline" colorScheme="coolGray">
+            Open /about
+          </Button>
+        </SolitoLink>
+      </Box>
     </Center>
   )
 }
