@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 
 const { withNativebase } = require('@native-base/next-adapter')
+const withFonts = require('next-fonts')
+const withImages = require('next-images')
+const { withExpo } = require('@expo/next-adapter')
 
 module.exports = withNativebase({
   dependencies: [
@@ -10,6 +13,11 @@ module.exports = withNativebase({
     'solito',
     'app',
   ],
+  plugins: [
+    [withFonts, { projectRoot: __dirname }],
+    [withImages, { projectRoot: __dirname }],
+    [withExpo, { projectRoot: __dirname }],
+  ],
   nextConfig: {
     projectRoot: __dirname,
     reactStrictMode: true,
@@ -18,7 +26,6 @@ module.exports = withNativebase({
       config.resolve.alias = {
         ...(config.resolve.alias || {}),
         'react-native$': 'react-native-web',
-        '@expo/vector-icons': 'react-native-vector-icons',
       }
       config.resolve.extensions = [
         '.web.js',
@@ -27,6 +34,9 @@ module.exports = withNativebase({
         ...config.resolve.extensions,
       ]
       return config
+    },
+    images: {
+      disableStaticImages: true,
     },
   },
 })
