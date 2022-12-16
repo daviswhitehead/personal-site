@@ -5,7 +5,7 @@ import { NativeBaseProvider } from 'native-base'
 export function Provider({ children }: { children: React.ReactNode }) {
   return (
     <NavigationProvider>
-      <NativeBaseProvider>{children}</NativeBaseProvider>
+      <NativeBaseProvider isSSR>{children}</NativeBaseProvider>
     </NavigationProvider>
   )
 }
