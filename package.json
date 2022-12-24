@@ -15,8 +15,5 @@
   "scripts": {
     "native": "cd apps/expo && expo start",
     "web": "cd apps/next && yarn next"
-  },
-  "dependencies": {
-    "moti": "^0.21.0"
   }
 }
