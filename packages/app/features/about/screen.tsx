@@ -1,30 +1,7 @@
-import { Link as SolitoLink } from 'solito/link'
 import React from 'react'
-import {
-  Center,
-  Image,
-  HStack,
-  Text,
-  Heading,
-  Code,
-  Link,
-  VStack,
-  Button,
-  AspectRatio,
-  Box,
-  StatusBar,
-  Hidden,
-  IconButton,
-  Icon,
-  useColorMode,
-  Input,
-  Pressable,
-  Menu,
-  Avatar,
-  Divider,
-} from 'native-base'
+import { VStack, Button, Box, StatusBar } from 'native-base'
+import { Link as SolitoLink } from 'solito/link'
 import Header from '../../components/Header'
-import Drawer from '../../components/Drawer'
 
 export function AboutScreen(props: any) {
   return (
@@ -45,7 +22,6 @@ export function AboutScreen(props: any) {
         _dark={{ bg: 'customGray' }}
       >
         <Header />
-        <Drawer />
         <Box mt="6">
           <SolitoLink href="/">
             <Button
