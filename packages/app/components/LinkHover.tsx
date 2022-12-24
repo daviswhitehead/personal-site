@@ -9,7 +9,7 @@ export default function Drawer(props: any) {
       variant="unstyled"
       _hover={{
         _text: {
-          color: 'green.500',
+          color: 'orange.300',
         },
       }}
       justifyContent={'flex-start'}

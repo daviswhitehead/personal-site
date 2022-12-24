@@ -14,7 +14,7 @@ export default function Header(props: any) {
       <LinkHover
         onPress={() => push(Routes.HOME.path)}
         text={Routes.HOME.title}
-        size="lg"
+        _text={{ fontSize: 'lg' }}
       />
       <HStack alignItems="flex-start" space={5}>
         {list.map((item, idx) => {

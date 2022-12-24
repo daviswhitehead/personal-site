@@ -26,3 +26,4 @@ All your screens and components will be present in packages/app and this can be 
 - https://github.com/GeekyAnts/nativebase-templates/tree/master/solito-universal-app-template-nativebase-typescript
 - https://solito.dev/
 - https://icons.expo.fyi/
+- https://docs.nativebase.io/default-theme#h2-colors

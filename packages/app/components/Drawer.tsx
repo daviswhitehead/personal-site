@@ -12,13 +12,7 @@ export default function Drawer(props: any) {
   const { push } = useRouter()
 
   return (
-    <Box
-      w="100%"
-      justifyContent={'flex-start'}
-      alignItems={'flex-start'}
-      _light={{ bg: 'white' }}
-      _dark={{ bg: 'coolGray.900' }}
-    >
+    <Box w="100%" justifyContent={'flex-start'} alignItems={'flex-start'}>
       <VStack px="4" py="2">
         {list.map((item, idx) => {
           return (

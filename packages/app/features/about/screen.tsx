@@ -1,6 +1,5 @@
 import React from 'react'
-import { VStack, Button, Box, StatusBar } from 'native-base'
-import { Link as SolitoLink } from 'solito/link'
+import { VStack, Box, StatusBar, Text } from 'native-base'
 import Header from '../../components/Header'
 
 export function AboutScreen(props: any) {
@@ -11,27 +10,12 @@ export function AboutScreen(props: any) {
         backgroundColor="transparent"
         barStyle="light-content"
       />
-      <Box
-        safeAreaTop
-        _light={{ bg: 'primary.900' }}
-        _dark={{ bg: 'coolGray.900' }}
-      />
-      <VStack
-        flex={1}
-        _light={{ bg: 'primary.50' }}
-        _dark={{ bg: 'customGray' }}
-      >
+      <Box safeAreaTop />
+      <VStack flex={1}>
         <Header />
         <Box mt="6">
-          <SolitoLink href="/">
-            <Button
-              pointerEvents="none"
-              variant="outline"
-              colorScheme="coolGray"
-            >
-              home
-            </Button>
-          </SolitoLink>
+          <Text color="blue.300"> Hello World</Text>
+          <Text color="'gray.900'"> Hello World</Text>
         </Box>
       </VStack>
     </>
