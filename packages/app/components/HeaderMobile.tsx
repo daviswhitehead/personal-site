@@ -3,17 +3,18 @@ import { HStack, IconButton, Icon } from 'native-base'
 import { MaterialIcons } from '@expo/vector-icons'
 import LinkHover from './LinkHover'
 import { useRouter } from 'solito/router'
+import Routes from '../navigation/routes'
 
 export default function HeaderMobile(props: any) {
   const { push } = useRouter()
   return (
     <HStack space="2" justifyContent="space-between" alignItems="center">
       <LinkHover
-        text={'Davis Whitehead'}
+        text={Routes.HOME.title}
         _text={{
           fontSize: 'lg',
         }}
-        onPress={() => push('/')}
+        onPress={() => push(Routes.HOME.path)}
       />
       <IconButton
         m="0"

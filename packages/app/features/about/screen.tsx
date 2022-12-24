@@ -4,20 +4,22 @@ import Header from '../../components/Header'
 
 export function AboutScreen(props: any) {
   return (
-    <>
-      <StatusBar
-        translucent
-        backgroundColor="transparent"
-        barStyle="light-content"
-      />
-      <Box safeAreaTop />
-      <VStack flex={1}>
-        <Header />
-        <Box mt="6">
-          <Text color="blue.300"> Hello World</Text>
-          <Text color="'gray.900'"> Hello World</Text>
-        </Box>
-      </VStack>
-    </>
+    <Box alignItems={{ base: 'flex-start', xl: 'center' }}>
+      <Box w="container.xl">
+        <StatusBar
+          translucent
+          backgroundColor="transparent"
+          barStyle="light-content"
+        />
+        <Box safeAreaTop />
+        <VStack flex={1} maxW="container.xl">
+          <Header />
+          <Box mt="6">
+            <Text color="blue.300"> Hello World</Text>
+            <Text color="'gray.900'"> Hello World</Text>
+          </Box>
+        </VStack>
+      </Box>
+    </Box>
   )
 }
