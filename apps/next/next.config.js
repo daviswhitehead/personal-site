@@ -8,6 +8,7 @@ const { withExpo } = require('@expo/next-adapter')
 module.exports = withNativebase({
   dependencies: [
     '@expo/next-adapter',
+    'next-images',
     'react-native-vector-icons',
     'react-native-vector-icons-for-web',
     'solito',

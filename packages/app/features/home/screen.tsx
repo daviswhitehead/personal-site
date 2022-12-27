@@ -1,76 +1,29 @@
-import { Link as SolitoLink } from 'solito/link'
 import React from 'react'
-import {
-  Center,
-  Image,
-  HStack,
-  Text,
-  Heading,
-  Code,
-  Link,
-  VStack,
-  Button,
-  AspectRatio,
-  Box,
-} from 'native-base'
-import { ColorModeSwitch } from '../../components'
+import { VStack, Box, StatusBar, Text } from 'native-base'
+import Header from '../../components/Header'
+import Introduction from '../../components/Introduction'
+import Promoted from '../../components/Promoted'
+import Subscribe from '../../components/Subscribe'
+import Footer from '../../components/Footer'
 
-export function HomeScreen() {
+export function HomeScreen(props: any) {
   return (
-    <Center
-      flex={1}
-      _dark={{ bg: 'blueGray.900' }}
-      _light={{ bg: 'blueGray.50' }}
-    >
-      <VStack alignItems="center" space="md">
-        <AspectRatio w={40} ratio={1}>
-          <Image
-            rounded="full"
-            source={{
-              uri: 'https://pbs.twimg.com/profile_images/1550379416995643392/KeFMAS7m_400x400.png',
-            }}
-            alt="NextJS Logo"
-            resizeMode="contain"
-          />
-        </AspectRatio>
-        <Heading>NativeBase + Solito ❤️</Heading>
-        <Text>
-          Edit <Code>packages/app/home/screen.tsx</Code> and save to reload.
-        </Text>
-        <HStack alignItems="center" space="sm">
-          <Link href="https://solito.dev/" isExternal>
-            <Text
-              _light={{ color: 'gray.700' }}
-              _dark={{ color: 'gray.400' }}
-              underline
-              fontSize={'xl'}
-            >
-              Learn Solito Davis
-            </Text>
-          </Link>
-          <Text>/</Text>
-          <Link href="https://docs.nativebase.io" isExternal>
-            <Text color="primary.500" underline fontSize={'xl'}>
-              Learn NativeBase
-            </Text>
-          </Link>
-        </HStack>
-      </VStack>
-      <ColorModeSwitch />
-      <Box mt="6">
-        <SolitoLink href="/user/NativeBase">
-          <Button pointerEvents="none" variant="outline" colorScheme="coolGray">
-            Open User Detail
-          </Button>
-        </SolitoLink>
+    <Box alignItems={{ base: 'flex-start', xl: 'center' }}>
+      <Box w="container.xl">
+        <StatusBar
+          translucent
+          backgroundColor="transparent"
+          barStyle="light-content"
+        />
+        <Box safeAreaTop />
+        <VStack>
+          <Header />
+          <Introduction />
+          <Promoted />
+          <Subscribe />
+          <Footer />
+        </VStack>
       </Box>
-      <Box mt="6">
-        <SolitoLink href="/about">
-          <Button pointerEvents="none" variant="outline" colorScheme="coolGray">
-            Open /about
-          </Button>
-        </SolitoLink>
-      </Box>
-    </Center>
+    </Box>
   )
 }

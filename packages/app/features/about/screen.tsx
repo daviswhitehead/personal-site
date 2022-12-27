@@ -15,7 +15,7 @@ export function AboutScreen(props: any) {
         <VStack flex={1} maxW="container.xl">
           <Header />
           <Box mt="6">
-            <Text color="blue.300"> Hello World</Text>
+            <Text color="blue.300"> About</Text>
             <Text color="'gray.900'"> Hello World</Text>
           </Box>
         </VStack>
