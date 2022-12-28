@@ -5,7 +5,7 @@ import Header from '../../components/Header'
 export function AboutScreen(props: any) {
   return (
     <Box alignItems={{ base: 'flex-start', xl: 'center' }}>
-      <Box w="container.xl">
+      <Box w={{ base: '100%', xl: 'container.xl' }}>
         <StatusBar
           translucent
           backgroundColor="transparent"

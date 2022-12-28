@@ -6,7 +6,7 @@ import Routes from '../navigation/routes'
 import { useRouter } from 'solito/router'
 import LinkHover from './LinkHover'
 
-const list = [Routes.ABOUT, Routes.PROJECTS, Routes.WRITING, Routes.COMMUNITY]
+const list = [Routes.ABOUT, Routes.WORK, Routes.WRITING]
 
 export default function Drawer(props: any) {
   const { push } = useRouter()

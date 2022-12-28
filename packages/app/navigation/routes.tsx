@@ -9,19 +9,19 @@ export default {
     name: 'about',
     title: 'About',
   },
-  PROJECTS: {
-    path: '/projects',
-    name: 'projects',
-    title: 'Projects',
+  WORK: {
+    path: '/work',
+    name: 'work',
+    title: 'Work',
   },
   WRITING: {
     path: '/writing',
     name: 'writing',
     title: 'Writing',
   },
-  COMMUNITY: {
-    path: '/community',
-    name: 'community',
-    title: 'Community',
-  },
+  // COMMUNITY: {
+  //   path: '/community',
+  //   name: 'community',
+  //   title: 'Community',
+  // },
 }

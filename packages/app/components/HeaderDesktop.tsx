@@ -4,7 +4,7 @@ import { useRouter } from 'solito/router'
 import LinkHover from './LinkHover'
 import Routes from '../navigation/routes'
 
-const list = [Routes.ABOUT, Routes.PROJECTS, Routes.WRITING, Routes.COMMUNITY]
+const list = [Routes.ABOUT, Routes.WORK, Routes.WRITING]
 
 export default function Header(props: any) {
   const { colorMode } = useColorMode()

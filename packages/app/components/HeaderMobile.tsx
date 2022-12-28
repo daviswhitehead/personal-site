@@ -20,7 +20,6 @@ export default function HeaderMobile(props: any) {
         m="0"
         p="1"
         variant="unstyled"
-        colorScheme="primary"
         onPress={props.toggleDrawer}
         _hover={{
           _icon: {
@@ -32,6 +31,7 @@ export default function HeaderMobile(props: any) {
             size="5"
             name={props.isDrawerVisible ? 'close' : 'menu'}
             as={MaterialIcons}
+            color="white"
           />
         }
       />
