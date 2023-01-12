@@ -1,7 +1,0 @@
-I'm a Product Manager at WHOOP on the Member Experience Infrastructure team. Our team's charter is to find ways to increase customer retention by leveraging our customer support team. Our work ranges from experimenting with new customer support related value propositions to building infrastructure that improves the customer support experience overall.
-
-I've now been involved in the Boston startup scene for over six years.
-
-I started as a Quantitative Analyst for a local startup incubator called Cogo Labs. At Cogo, I learned how to apply data-driven insights to scale business functions including, marketing, product, and revenue.
-I later joined EverQuote, a Cogo-incubated insurance startup, as the Product Manager for EverDrive -- a consumer mobile app helping people become safer drivers and rewarding safe driving with discounts on auto insurance. As my first true product role, working on EverDrive was a crash course in Product Management. I came away with a solid foundation of product skills and a hunger to learn more.
-While still at EverQuote, I started building another consumer mobile app on the side called Shayr. The project originated as an exercise to help me build empathy, understanding, and appreciation for the work our engineers were doing on EverDrive. It quickly turned into a passion project and eventually a full-time role where I gained first-hand experience building a real product from zero to one.
