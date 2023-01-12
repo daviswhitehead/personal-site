@@ -1,7 +1,4 @@
-// export { default } from "@native-base/next-adapter/document";
-
 import React from "react";
-import { DocumentContext, DocumentInitialProps } from "next/document";
 import { default as NativebaseDocument } from "@native-base/next-adapter/document";
 
 // Icon Font Library Imports

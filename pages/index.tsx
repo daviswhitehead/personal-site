@@ -1,5 +1,5 @@
 import React from "react";
-import { VStack, Box, StatusBar, Text } from "native-base";
+import { VStack, Box, StatusBar } from "native-base";
 import Header from "../components/Header";
 // import Hero from "../components/Hero";
 // import Promoted from "../components/Promoted";
@@ -7,9 +7,12 @@ import Header from "../components/Header";
 // import Footer from "../components/Footer";
 // import Carousel from "../components/Carousel";
 
-export default function HomeScreen(props: any) {
+export default function HomeScreen() {
   return (
-    <Box alignItems={{ base: "flex-start", xl: "center" }}>
+    <Box
+      alignItems={{ base: "flex-start", xl: "center" }}
+      _dark={{ bg: "gray.800" }}
+    >
       <Box w={{ base: "100%", xl: "container.xl" }}>
         <StatusBar
           translucent

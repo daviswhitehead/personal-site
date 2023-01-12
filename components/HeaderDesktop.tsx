@@ -1,18 +1,17 @@
 import React from "react";
-import { HStack, useColorMode } from "native-base";
+import { HStack } from "native-base";
 // import { useRouter } from "solito/router";
 import LinkHover from "./LinkHover";
 import Routes from "../lib/routes";
 
 const list = [Routes.ABOUT, Routes.WORK, Routes.WRITING];
 
-export default function Header(props: any) {
-  const { colorMode } = useColorMode();
+export default function Header() {
   // const { push } = useRouter();
   return (
     <HStack alignItems="center" space={10} justifyContent="flex-start">
       <LinkHover
-        // onPress={() => push(Routes.HOME.path)}
+        onPress={() => console.log("hello world")}
         text={Routes.HOME.title}
         _text={{ fontSize: "lg" }}
       />
@@ -21,7 +20,7 @@ export default function Header(props: any) {
           return (
             <LinkHover
               key={idx}
-              // onPress={() => push(item.path)}
+              onPress={() => console.log("hello world")}
               text={item.title}
             />
           );

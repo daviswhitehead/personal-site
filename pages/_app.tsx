@@ -1,6 +1,6 @@
 import React from "react";
 import type { AppProps } from "next/app";
-import { NativeBaseProvider, extendTheme, Box } from "native-base";
+import { NativeBaseProvider, extendTheme } from "native-base";
 import Head from "next/head";
 
 const config = {
@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <link rel="manifest" href="/favicon/site.webmanifest" />
       </Head>
-      <NativeBaseProvider isSSR>
+      <NativeBaseProvider isSSR theme={customTheme}>
         <Component {...pageProps} />
       </NativeBaseProvider>
     </>
@@ -43,15 +43,3 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export default MyApp;
-
-// export function Provider({ children }: { children: React.ReactNode }) {
-//   return (
-//     <NavigationProvider>
-//       <NativeBaseProvider isSSR theme={customTheme}>
-//         <Box display={"flex"} flex={1} _dark={{ bg: "gray.800" }}>
-//           {children}
-//         </Box>
-//       </NativeBaseProvider>
-//     </NavigationProvider>
-//   );
-// }

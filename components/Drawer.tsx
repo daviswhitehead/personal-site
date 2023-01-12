@@ -1,12 +1,11 @@
 import React from "react";
-import { Box, VStack, Text, Button, Link } from "native-base";
-import { MaterialIcons } from "@expo/vector-icons";
+import { Box, VStack } from "native-base";
 import Routes from "../lib/routes";
 import LinkHover from "./LinkHover";
 
 const list = [Routes.ABOUT, Routes.WORK, Routes.WRITING];
 
-export default function Drawer(props: any) {
+export default function Drawer() {
   return (
     <Box w="100%" justifyContent={"flex-start"} alignItems={"flex-start"}>
       <VStack px="4" py="2">
@@ -14,7 +13,7 @@ export default function Drawer(props: any) {
           return (
             <LinkHover
               key={idx}
-              // onPress={() => push(item.path)}
+              onPress={() => console.log("hello world")}
               text={item.title}
               px="3"
               py="2"

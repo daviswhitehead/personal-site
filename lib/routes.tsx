@@ -1,27 +1,29 @@
-export default {
+const routes = {
   HOME: {
-    path: '/',
-    name: 'home',
-    title: 'Davis Whitehead',
+    path: "/",
+    name: "home",
+    title: "Davis Whitehead",
   },
   ABOUT: {
-    path: '/about',
-    name: 'about',
-    title: 'About',
+    path: "/about",
+    name: "about",
+    title: "About",
   },
   WORK: {
-    path: '/work',
-    name: 'work',
-    title: 'Work',
+    path: "/work",
+    name: "work",
+    title: "Work",
   },
   WRITING: {
-    path: '/writing',
-    name: 'writing',
-    title: 'Writing',
+    path: "/writing",
+    name: "writing",
+    title: "Writing",
   },
   // COMMUNITY: {
   //   path: '/community',
   //   name: 'community',
   //   title: 'Community',
   // },
-}
+};
+
+export default routes;

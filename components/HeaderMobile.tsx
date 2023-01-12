@@ -5,7 +5,12 @@ import LinkHover from "./LinkHover";
 // import { useRouter } from 'solito/router'
 import Routes from "../lib/routes";
 
-export default function HeaderMobile(props: any) {
+interface Props {
+  toggleDrawer: () => void;
+  isDrawerVisible: boolean;
+}
+
+export default function HeaderMobile(props: Props) {
   // const { push } = useRouter()
   return (
     <HStack space="2" justifyContent="space-between" alignItems="center">

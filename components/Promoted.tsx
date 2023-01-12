@@ -1,11 +1,11 @@
 import React from "react";
-import { Box, Stack, Text, VStack, Image } from "native-base";
+import { Box, Stack, Text, VStack } from "native-base";
 import LinkHover from "./LinkHover";
 // import { Link as SolitoLink } from 'solito/link'
 // import { useRouter } from 'solito/router'
-import Card from "./Card";
+// import Card from "./Card";
 
-export default function Promoted(props: any) {
+export default function Promoted() {
   // const { push } = useRouter()
   return (
     <Box>
@@ -53,7 +53,7 @@ export default function Promoted(props: any) {
             py={{ base: "2", md: "4" }}
           />
         </VStack>
-        <Card
+        {/* <Card
           image={
             <Image
               source={{
@@ -67,7 +67,7 @@ export default function Promoted(props: any) {
           subtitle="A social network for sharing poetry"
           description="Shayr is a social network for sharing poetry. It's a place for poets to share their work and for readers to discover new poets. Shayr is a passion project of mine. I built it to learn more about building a social network and to explore the intersection of poetry and technology."
           meta="React Native, Expo, Firebase, TypeScript"
-        />
+        /> */}
       </Stack>
 
       <Text
