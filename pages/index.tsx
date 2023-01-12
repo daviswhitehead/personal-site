@@ -1,11 +1,11 @@
 import React from "react";
 import { VStack, Box, StatusBar, Text } from "native-base";
 import Header from "../components/Header";
-import Hero from "../components/Hero";
-import Promoted from "../components/Promoted";
-import Subscribe from "../components/Subscribe";
-import Footer from "../components/Footer";
-import Carousel from "../components/Carousel";
+// import Hero from "../components/Hero";
+// import Promoted from "../components/Promoted";
+// import Subscribe from "../components/Subscribe";
+// import Footer from "../components/Footer";
+// import Carousel from "../components/Carousel";
 
 export default function HomeScreen(props: any) {
   return (
