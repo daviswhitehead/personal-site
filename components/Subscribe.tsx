@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "native-base";
 
-export default function Drawer() {
-  return <Button>Hello World</Button>;
+export default function Subscribe() {
+  return <Button>SUBSCRIBE</Button>;
 }

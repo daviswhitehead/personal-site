@@ -2,9 +2,9 @@ import React from "react";
 import { VStack, Box, StatusBar } from "native-base";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
-// import Promoted from "../components/Promoted";
-// import Subscribe from "../components/Subscribe";
-// import Footer from "../components/Footer";
+import Promoted from "../components/Promoted";
+import Subscribe from "../components/Subscribe";
+import Footer from "../components/Footer";
 // import Carousel from "../components/Carousel";
 
 export default function HomeScreen() {
@@ -24,9 +24,9 @@ export default function HomeScreen() {
         <VStack space={5}>
           <Header />
           <Hero />
-          {/* <Promoted /> */}
-          {/* <Subscribe /> */}
-          {/* <Footer /> */}
+          <Promoted />
+          <Subscribe />
+          <Footer />
           {/* <Carousel /> */}
         </VStack>
       </Box>

@@ -1,7 +1,6 @@
 import React from "react";
-import { Box, Stack, Text, VStack } from "native-base";
-
-// const headshot = require('../images/Headshot.png')
+import { Box, Stack, Text, VStack, Image } from "native-base";
+import headshot from "../public/images/headshot.png";
 
 export default function Hero() {
   return (
@@ -12,12 +11,12 @@ export default function Hero() {
         justifyContent={{ base: "center", md: "flex-start" }}
         alignItems={{ base: "center", md: "flex-start" }}
       >
-        {/* <Image
-          source={{ uri: headshot }}
+        <Image
+          source={{ uri: headshot.src }}
           alt="Davis Whitehead's Headshot"
           size={"150"}
           resizeMode="contain"
-        /> */}
+        />
         <VStack flex={1} textAlign="center">
           <Text
             fontFamily="heading"
