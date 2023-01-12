@@ -36,7 +36,7 @@ export default function HeaderMobile(props: Props) {
             size="5"
             name={props.isDrawerVisible ? "close" : "menu"}
             as={MaterialIcons}
-            color="black"
+            _dark={{ color: "white" }}
           />
         }
       />

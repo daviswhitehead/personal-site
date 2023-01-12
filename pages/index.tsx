@@ -1,7 +1,7 @@
 import React from "react";
 import { VStack, Box, StatusBar } from "native-base";
 import Header from "../components/Header";
-// import Hero from "../components/Hero";
+import Hero from "../components/Hero";
 // import Promoted from "../components/Promoted";
 // import Subscribe from "../components/Subscribe";
 // import Footer from "../components/Footer";
@@ -10,6 +10,7 @@ import Header from "../components/Header";
 export default function HomeScreen() {
   return (
     <Box
+      flex={1}
       alignItems={{ base: "flex-start", xl: "center" }}
       _dark={{ bg: "gray.800" }}
     >
@@ -22,7 +23,7 @@ export default function HomeScreen() {
         <Box safeAreaTop />
         <VStack space={5}>
           <Header />
-          {/* <Hero /> */}
+          <Hero />
           {/* <Promoted /> */}
           {/* <Subscribe /> */}
           {/* <Footer /> */}
