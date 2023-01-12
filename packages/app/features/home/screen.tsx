@@ -5,6 +5,7 @@ import Hero from '../../components/Hero'
 import Promoted from '../../components/Promoted'
 import Subscribe from '../../components/Subscribe'
 import Footer from '../../components/Footer'
+import Carousel from '../../components/Carousel'
 
 export function HomeScreen(props: any) {
   return (
@@ -22,6 +23,7 @@ export function HomeScreen(props: any) {
           <Promoted />
           <Subscribe />
           <Footer />
+          {/* <Carousel /> */}
         </VStack>
       </Box>
     </Box>
