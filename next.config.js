@@ -1,8 +1,16 @@
 const { withNativebase } = require("@native-base/next-adapter");
+// const withFonts = require("next-fonts");
+// const { withExpo } = require("@expo/next-adapter");
 const path = require("path");
 
 module.exports = withNativebase({
-  dependencies: ["@native-base/icons", "react-native-web-linear-gradient"],
+  dependencies: [
+    "@native-base/icons",
+    "react-native-web-linear-gradient",
+    "@expo/next-adapter",
+    "react-native-vector-icons",
+    // "react-native-vector-icons-for-web",
+  ],
   nextConfig: {
     webpack: (config, options) => {
       config.module.rules.push({
@@ -14,6 +22,7 @@ module.exports = withNativebase({
         ...(config.resolve.alias || {}),
         "react-native$": "react-native-web",
         "react-native-linear-gradient": "react-native-web-linear-gradient",
+        "@expo/vector-icons": "react-native-vector-icons",
       };
       config.resolve.extensions = [
         ".web.js",

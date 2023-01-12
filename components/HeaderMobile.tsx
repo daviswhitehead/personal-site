@@ -1,20 +1,20 @@
-import React from 'react'
-import { HStack, IconButton, Icon } from 'native-base'
-import { MaterialIcons } from '@expo/vector-icons'
-import LinkHover from './LinkHover'
-import { useRouter } from 'solito/router'
-import Routes from '../navigation/routes'
+import React from "react";
+import { HStack, IconButton, Icon } from "native-base";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import LinkHover from "./LinkHover";
+// import { useRouter } from 'solito/router'
+import Routes from "../lib/routes";
 
 export default function HeaderMobile(props: any) {
-  const { push } = useRouter()
+  // const { push } = useRouter()
   return (
     <HStack space="2" justifyContent="space-between" alignItems="center">
       <LinkHover
         text={Routes.HOME.title}
         _text={{
-          fontSize: 'lg',
+          fontSize: "lg",
         }}
-        onPress={() => push(Routes.HOME.path)}
+        // onPress={() => push(Routes.HOME.path)}
       />
       <IconButton
         m="0"
@@ -23,18 +23,18 @@ export default function HeaderMobile(props: any) {
         onPress={props.toggleDrawer}
         _hover={{
           _icon: {
-            color: 'orange.300',
+            color: "orange.300",
           },
         }}
         icon={
           <Icon
             size="5"
-            name={props.isDrawerVisible ? 'close' : 'menu'}
+            name={props.isDrawerVisible ? "close" : "menu"}
             as={MaterialIcons}
-            color="white"
+            color="black"
           />
         }
       />
     </HStack>
-  )
+  );
 }
