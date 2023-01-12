@@ -1,9 +1,9 @@
 import React from "react";
-import { Box, Image, Stack, Text, VStack } from "native-base";
+import { Box, Stack, Text, VStack } from "native-base";
 
 // const headshot = require('../images/Headshot.png')
 
-export default function Hero(props: any) {
+export default function Hero() {
   return (
     <Box px={{ base: "4", md: "8" }} py={{ base: "3", md: "5" }}>
       <Stack
@@ -25,7 +25,7 @@ export default function Hero(props: any) {
             fontSize="5xl"
             textAlign={{ base: "center", md: "left" }}
           >
-            Hi, I'm Davis.
+            Hi, I{"'"}m Davis.
           </Text>
           <Text
             fontFamily="heading"
@@ -33,7 +33,7 @@ export default function Hero(props: any) {
             fontSize="3xl"
             textAlign={{ base: "center", md: "left" }}
           >
-            I'm a product maker and a proud generalist.
+            I{"'"}m a product maker and a proud generalist.
           </Text>
         </VStack>
       </Stack>
