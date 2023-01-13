@@ -9,20 +9,21 @@ export default function Header() {
   function toggleSidebar() {
     setIsSidebarVisible(!isSidebarVisible);
   }
+
   return (
-    <Box>
-      <Box px={{ base: "4", md: "8" }} py={{ base: "3", md: "5" }}>
-        <Hidden from="md">
+    <Box px={{ base: "4", md: "8" }} py={{ base: "3", md: "5" }}>
+      <Hidden from="md">
+        <Box>
           <HeaderMobile
             toggleDrawer={toggleSidebar}
             isDrawerVisible={isSidebarVisible}
           />
-        </Hidden>
-        <Hidden till="md">
-          <HeaderDesktop />
-        </Hidden>
-      </Box>
-      {isSidebarVisible && <Drawer />}
+          {isSidebarVisible && <Drawer />}
+        </Box>
+      </Hidden>
+      <Hidden till="md">
+        <HeaderDesktop />
+      </Hidden>
     </Box>
   );
 }

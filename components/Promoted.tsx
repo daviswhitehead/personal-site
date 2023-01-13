@@ -1,14 +1,11 @@
 import React from "react";
-import { Box, Stack, Text, VStack } from "native-base";
-import LinkHover from "./LinkHover";
-// import { Link as SolitoLink } from 'solito/link'
-// import { useRouter } from 'solito/router'
-// import Card from "./Card";
+import { Image, Stack, Text, VStack, Link } from "native-base";
+import HoverStyle from "./HoverStyle";
+import Card from "./Card";
 
 export default function Promoted() {
-  // const { push } = useRouter()
   return (
-    <Box>
+    <>
       <Stack
         space={{ base: "5", md: "10" }}
         direction={{ base: "column-reverse", md: "row" }}
@@ -44,16 +41,20 @@ export default function Promoted() {
             keeping things simple by staying focused on why people use your
             product.
           </Text>
-          <LinkHover
-            text={"-> Let’s discuss creating products people love!"}
-            _text={{
-              fontSize: "xl",
-            }}
-            // onPress={() => push('mailto:whitehead.davis@gmail.com')}
-            py={{ base: "2", md: "4" }}
-          />
+          <HoverStyle py={{ base: "2", md: "4" }}>
+            <Link
+              _text={{
+                fontSize: "xl",
+              }}
+              isUnderlined={false}
+              href={"mailto:reaerin@gmail.com"}
+              isExternal
+            >
+              -- Let’s discuss creating products people love!
+            </Link>
+          </HoverStyle>
         </VStack>
-        {/* <Card
+        <Card
           image={
             <Image
               source={{
@@ -67,7 +68,7 @@ export default function Promoted() {
           subtitle="A social network for sharing poetry"
           description="Shayr is a social network for sharing poetry. It's a place for poets to share their work and for readers to discover new poets. Shayr is a passion project of mine. I built it to learn more about building a social network and to explore the intersection of poetry and technology."
           meta="React Native, Expo, Firebase, TypeScript"
-        /> */}
+        />
       </Stack>
 
       <Text
@@ -85,6 +86,6 @@ export default function Promoted() {
       <Text>[Writing] Write about pursuing a well-lived life</Text>
       <Text>[Writing] Description...</Text>
       <Text>Carousel of promoted work</Text>
-    </Box>
+    </>
   );
 }

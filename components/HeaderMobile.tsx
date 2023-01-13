@@ -1,9 +1,8 @@
 import React from "react";
-import { HStack, IconButton, Icon } from "native-base";
+import { HStack, IconButton, Icon, Link } from "native-base";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
-import LinkHover from "./LinkHover";
-// import { useRouter } from 'solito/router'
-import Routes from "../lib/routes";
+import HoverStyle from "./HoverStyle";
+import routes from "../lib/routes";
 
 interface Props {
   toggleDrawer: () => void;
@@ -11,35 +10,35 @@ interface Props {
 }
 
 export default function HeaderMobile(props: Props) {
-  // const { push } = useRouter()
   return (
     <HStack space="2" justifyContent="space-between" alignItems="center">
-      <LinkHover
-        text={Routes.HOME.title}
-        _text={{
-          fontSize: "lg",
-        }}
-        // onPress={() => push(Routes.HOME.path)}
-      />
-      <IconButton
-        m="0"
-        p="1"
-        variant="unstyled"
-        onPress={props.toggleDrawer}
-        _hover={{
-          _icon: {
-            color: "orange.300",
-          },
-        }}
-        icon={
-          <Icon
-            size="5"
-            name={props.isDrawerVisible ? "close" : "menu"}
-            as={MaterialIcons}
-            _dark={{ color: "white" }}
-          />
-        }
-      />
+      <HoverStyle>
+        <Link
+          _text={{
+            fontSize: "lg",
+          }}
+          isUnderlined={false}
+          href={routes.HOME.path}
+        >
+          {routes.HOME.title}
+        </Link>
+      </HoverStyle>
+      <HoverStyle>
+        <IconButton
+          m="0"
+          p="1"
+          variant="unstyled"
+          onPress={props.toggleDrawer}
+          _dark={{ _icon: { color: "white" } }}
+          icon={
+            <Icon
+              size="5"
+              name={props.isDrawerVisible ? "close" : "menu"}
+              as={MaterialIcons}
+            />
+          }
+        />
+      </HoverStyle>
     </HStack>
   );
 }

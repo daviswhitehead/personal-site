@@ -2,7 +2,7 @@ import React from "react";
 import { Stack, Text, AspectRatio, Heading, HStack, VStack } from "native-base";
 
 export interface Props {
-  image: string;
+  image: React.ReactElement;
   title: string;
   subtitle: string;
   description: string;

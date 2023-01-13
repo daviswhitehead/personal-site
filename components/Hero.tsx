@@ -13,7 +13,7 @@ export default function Hero() {
       >
         <Image
           source={{ uri: headshot.src }}
-          alt="Davis Whitehead's Headshot"
+          alt="A photo of Davis Whitehead."
           size={"150"}
           resizeMode="contain"
         />
@@ -24,7 +24,7 @@ export default function Hero() {
             fontSize="5xl"
             textAlign={{ base: "center", md: "left" }}
           >
-            Hi, I{"'"}m Davis.
+            Hi, I’m Davis.
           </Text>
           <Text
             fontFamily="heading"
@@ -32,7 +32,7 @@ export default function Hero() {
             fontSize="3xl"
             textAlign={{ base: "center", md: "left" }}
           >
-            I{"'"}m a product maker and a proud generalist.
+            I’m a product maker and a proud generalist.
           </Text>
         </VStack>
       </Stack>
