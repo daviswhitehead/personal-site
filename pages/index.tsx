@@ -5,7 +5,6 @@ import Hero from "../components/Hero";
 import Promoted from "../components/Promoted";
 import Subscribe from "../components/Subscribe";
 import Footer from "../components/Footer";
-// import Carousel from "../components/Carousel";
 
 export default function HomeScreen() {
   return (
@@ -22,7 +21,6 @@ export default function HomeScreen() {
           <Promoted />
           <Subscribe />
           <Footer />
-          {/* <Carousel /> */}
         </VStack>
       </Box>
     </Box>

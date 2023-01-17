@@ -1,5 +1,6 @@
 import React from "react";
-import { Stack, Text, AspectRatio, Heading, HStack, VStack } from "native-base";
+import { Stack, Text, AspectRatio, HStack, VStack } from "native-base";
+import _ from "lodash";
 
 export interface Props {
   image: React.ReactElement;
@@ -7,50 +8,59 @@ export interface Props {
   subtitle: string;
   description: string;
   meta: string;
+  w: number;
+  h?: number;
 }
 
 export default function Card(props: Props) {
   return (
     <VStack
-      w={{ base: "500", md: "250", lg: "375", xl: "500" }}
       rounded="xl"
       overflow="hidden"
-      _dark={{
-        backgroundColor: "gray.700",
-      }}
+      borderWidth={1}
+      shadow={4}
+      _dark={{ borderColor: "gray.500" }}
+      w={props.w}
+      h={props.h}
     >
-      <AspectRatio ratio={16 / 9}>{props.image}</AspectRatio>
-      <Stack p="4" space={3}>
-        <Stack space={2}>
-          <Heading size="md" ml="-1">
-            {props.title}
-          </Heading>
-          <Text
-            fontSize="xs"
-            _light={{
-              color: "violet.500",
-            }}
-            _dark={{
-              color: "violet.400",
-            }}
-            fontWeight="500"
-            ml="-0.5"
-            mt="-1"
-          >
-            {props.subtitle}
+      <AspectRatio w="100%" ratio={16 / 9}>
+        {props.image}
+      </AspectRatio>
+      <Stack p="4" space={2}>
+        <Stack space={0}>
+          <Text fontSize="lg" fontFamily="heading" fontWeight="800">
+            {_.truncate(props.title, {
+              length: 50,
+              separator: " ",
+            })}
+          </Text>
+          <Text fontFamily="heading" fontWeight="200" fontSize="sm" mt="-.5">
+            {_.truncate(props.subtitle, {
+              length: 100,
+              separator: " ",
+            })}
           </Text>
         </Stack>
-        <Text fontWeight="400">{props.description}</Text>
+        <Text fontFamily="body" fontWeight="300" fontSize="sm">
+          {_.truncate(props.description, {
+            length: 300,
+            separator: " ",
+          })}
+        </Text>
         <HStack alignItems="center" space={4} justifyContent="space-between">
           <HStack alignItems="center">
             <Text
-              color="coolGray.600"
               _dark={{
                 color: "warmGray.200",
               }}
-              fontWeight="400"
+              fontSize="sm"
+              fontFamily="body"
+              fontWeight="500"
             >
-              {props.meta}
+              {_.truncate(props.meta, {
+                length: 100,
+                separator: " ",
+              })}
             </Text>
           </HStack>
         </HStack>

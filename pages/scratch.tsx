@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Text } from "native-base";
-import Carousel from "../components/Carousel";
 
 export default function HomeScreen() {
   return (
@@ -10,7 +9,6 @@ export default function HomeScreen() {
       _dark={{ bg: "gray.800" }}
     >
       <Text>Scratch</Text>
-      <Carousel />
     </Box>
   );
 }
