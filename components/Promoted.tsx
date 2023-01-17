@@ -150,7 +150,7 @@ export default function Promoted() {
       <Stack
         flex={1}
         space={{ base: "5", lg: "10" }}
-        direction={{ base: "column-reverse", lg: "row" }}
+        direction={{ base: "column", lg: "row" }}
         px={{ base: "4", lg: "8" }}
         py={{ base: "3", lg: "5" }}
         alignItems={{ base: "center", lg: "center" }}
