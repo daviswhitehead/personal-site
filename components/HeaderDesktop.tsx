@@ -29,17 +29,6 @@ export default function Header() {
             </HoverStyle>
           );
         })}
-        <HoverStyle>
-          <Link
-            _text={{
-              fontSize: "lg",
-            }}
-            isUnderlined={false}
-            href="/scratch"
-          >
-            Scratch
-          </Link>
-        </HoverStyle>
       </HStack>
     </HStack>
   );
