@@ -33,4 +33,14 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-https://reactnative.directory/?web=true
+# Resources
+
+- https://favicon.io/favicon-converter/
+- https://free-starter-kit.nativebase.io/
+- https://startup.nativebase.io/
+- https://docs.nativebase.io/
+- https://github.com/GeekyAnts/nativebase-templates/tree/master/solito-universal-app-template-nativebase-typescript
+- https://solito.dev/
+- https://icons.expo.fyi/
+- https://docs.nativebase.io/default-theme#h2-colors
+- https://reactnative.directory/?web=true
