@@ -12,7 +12,7 @@ export default function Promoted() {
   const carouselContainerHeight = cardHeight + 120;
 
   return (
-    <>
+    <Stack flex={1} direction={"column"} overflow="hidden">
       <Stack
         flex={1}
         space={{ base: "5", lg: "10" }}
@@ -415,6 +415,6 @@ export default function Promoted() {
           </Carousel>
         </VStack>
       </Stack>
-    </>
+    </Stack>
   );
 }
