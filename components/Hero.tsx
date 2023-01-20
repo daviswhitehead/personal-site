@@ -1,6 +1,15 @@
 import React from "react";
-import { Box, Stack, Text, VStack, Image } from "native-base";
+import {
+  Box,
+  Stack,
+  Text,
+  VStack,
+  Image,
+  useBreakpointValue,
+} from "native-base";
 import headshot from "../public/images/headshot.png";
+import routes from "../lib/routes";
+import LinkWithIcon from "./LinkWithIcon";
 
 export default function Hero() {
   return (
@@ -9,7 +18,7 @@ export default function Hero() {
         space={{ base: "5", md: "10" }}
         direction={{ base: "column", md: "row" }}
         justifyContent={{ base: "center", md: "flex-start" }}
-        alignItems={{ base: "center", md: "flex-start" }}
+        alignItems="center"
       >
         <Image
           source={{ uri: headshot.src }}
@@ -17,7 +26,14 @@ export default function Hero() {
           size={"150"}
           resizeMode="contain"
         />
-        <VStack flex={1} textAlign="center">
+        <VStack
+          flex={1}
+          justifyContent={{ base: "center", md: "flex-start" }}
+          alignItems={useBreakpointValue({
+            base: "center",
+            md: "flex-start",
+          })}
+        >
           <Text
             fontFamily="heading"
             fontWeight="800"
@@ -32,8 +48,10 @@ export default function Hero() {
             fontSize="3xl"
             textAlign={{ base: "center", md: "left" }}
           >
-            I’m a product maker and a proud generalist.
+            I’m a product maker. I make products people love. And I coach others
+            on making great products.
           </Text>
+          <LinkWithIcon url={routes.ABOUT.path} copy="Learn more about me" />
         </VStack>
       </Stack>
     </Box>

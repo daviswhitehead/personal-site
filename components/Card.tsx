@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { Stack, Text, AspectRatio, HStack, VStack } from "native-base";
 import _ from "lodash";
 
@@ -8,22 +8,23 @@ export interface Props {
   subtitle: string;
   description: string;
   meta: string;
-  w: number;
-  h?: number;
+  w: number | string;
 }
 
-export default function Card(props: Props) {
+const Card = (props: Props, ref: HTMLElement) => {
   return (
     <VStack
+      {...props}
+      // @ts-expect-error can't figure out this ref thing
+      ref={ref}
       rounded="xl"
       overflow="hidden"
       borderWidth={1}
       shadow={4}
       _dark={{ borderColor: "gray.500" }}
       w={props.w}
-      h={props.h}
     >
-      <AspectRatio w="100%" ratio={16 / 9}>
+      <AspectRatio w="100%" ratio={16 / 5}>
         {props.image}
       </AspectRatio>
       <Stack p="4" space={2}>
@@ -43,7 +44,7 @@ export default function Card(props: Props) {
         </Stack>
         <Text fontFamily="body" fontWeight="300" fontSize="sm">
           {_.truncate(props.description, {
-            length: 300,
+            length: 200,
             separator: " ",
           })}
         </Text>
@@ -67,4 +68,10 @@ export default function Card(props: Props) {
       </Stack>
     </VStack>
   );
-}
+};
+
+// @ts-expect-error can't figure out this ref thing
+const forwardedRefCard = forwardRef(Card);
+
+// Exporting the wrapped component
+export default forwardedRefCard;

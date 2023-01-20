@@ -36,6 +36,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <link rel="manifest" href="/favicon/site.webmanifest" />
       </Head>
       <NativeBaseProvider isSSR theme={customTheme}>
+        {/* @ts-expect-error ??? */}
         <Component {...pageProps} />
       </NativeBaseProvider>
     </>

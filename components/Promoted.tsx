@@ -1,77 +1,97 @@
-import React from "react";
-
-import { Image, Stack, Text, VStack, Link, Box } from "native-base";
-import HoverStyle from "./HoverStyle";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  Image,
+  Stack,
+  Text,
+  VStack,
+  Box,
+  useBreakpointValue,
+} from "native-base";
 import Card from "./Card";
 import Carousel from "./Carousel";
+import LinkWithIcon from "./LinkWithIcon";
+import routes from "lib/routes";
 
 export default function Promoted() {
-  const cardWidth = 400;
-  const cardHeight = 400;
-  const carouselContainerWidth = cardWidth + 100;
-  const carouselContainerHeight = cardHeight + 120;
+  const [cardHeight, setCardHeight] = useState(0);
+  const ref = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (ref.current) {
+        setCardHeight(ref.current.offsetHeight);
+      }
+    }, 0);
+  }, [cardHeight]);
+
+  const cardWidth = "90%";
+  const carouselContainerWidth = useBreakpointValue({
+    base: "100%",
+    md: "500",
+  });
+  const carouselContainerHeight = cardHeight + 40;
 
   return (
-    <Stack flex={1} direction={"column"} overflow="hidden">
+    <Stack
+      direction="column"
+      overflow="hidden"
+      space={useBreakpointValue({
+        base: "5",
+        md: "10",
+      })}
+      py={useBreakpointValue({
+        base: "5",
+        md: "10",
+      })}
+    >
       <Stack
-        flex={1}
-        space={{ base: "5", lg: "10" }}
-        direction={{ base: "column-reverse", lg: "row" }}
-        px={{ base: "4", lg: "8" }}
-        py={{ base: "3", lg: "5" }}
-        alignItems={{ base: "center", lg: "center" }}
+        space={{ base: "5", md: "10" }}
+        direction={{ base: "column-reverse", md: "row" }}
+        px={{ base: "4", md: "8" }}
+        py={{ base: "3", md: "5" }}
+        alignItems="center"
       >
-        <VStack flex={1} alignItems={{ base: "center", lg: "flex-start" }}>
+        <VStack
+          flex={1}
+          alignItems={useBreakpointValue({
+            base: "center",
+            md: "flex-start",
+          })}
+        >
           <Text
             fontFamily="heading"
             fontWeight="200"
             fontSize="3xl"
-            textAlign={{ base: "center", lg: "left" }}
-            py={{ base: "3", lg: "6" }}
+            textAlign={{ base: "center", md: "left" }}
+            py={{ base: "3", md: "6" }}
           >
-            I’m passionate about creating products people love.
+            Creating products people love
           </Text>
           <Text
             fontFamily="body"
             fontWeight="300"
             fontSize="lg"
-            textAlign={{ base: "center", lg: "left" }}
-            py={{ base: "2", lg: "4" }}
-            lineHeight="lg"
+            textAlign={{ base: "center", md: "left" }}
+            py={{ base: "2", md: "4" }}
+            // lineHeight="lg"
           >
-            I love solving a problem so well for someone that they can’t stop
-            talking about how great your product is. Products like this come
-            from listening to people and acting on their feedback. This doesn’t
-            mean building precisely what’s described. It means thoughtfully
-            combining a deep understanding of the problem with data revealing
-            how people actually behave. It means considering a wide range of
-            solutions, then choosing the best one intentionally. And it means
-            keeping things simple by staying focused on why people use your
-            product.
+            My expertise is in digital, consumer products. I specialize in
+            understanding problems people have, then developing a product that
+            delightfully solves their problems. I aspire to create innovative
+            products that benefit a user so much they can’t stop talking about
+            it.
           </Text>
-          <HoverStyle py={{ base: "2", lg: "4" }}>
-            <Link
-              _text={{
-                fontSize: "xl",
-                fontFamily: "body",
-                fontWeight: "500",
-              }}
-              isUnderlined={false}
-              href={"mailto:whitehead.davis@gmail.com"}
-              isExternal
-            >
-              -- Let’s discuss creating products people love!
-            </Link>
-          </HoverStyle>
+          <LinkWithIcon url={routes.ABOUT.path} copy="Checkout my products" />
         </VStack>
         <VStack w={carouselContainerWidth} h={carouselContainerHeight}>
           <Carousel>
             <Box
               flex={1}
-              justifyContent={{ base: "center", lg: "center" }}
-              alignItems={{ base: "center", lg: "center" }}
+              justifyContent="flex-start"
+              alignItems={{ base: "center", md: "center" }}
             >
               <Card
+                ref={ref}
                 image={
                   <Image
                     source={{
@@ -90,79 +110,97 @@ export default function Promoted() {
             </Box>
             <Box
               flex={1}
-              justifyContent={{ base: "center", lg: "center" }}
-              alignItems={{ base: "center", lg: "center" }}
+              justifyContent="flex-start"
+              alignItems={{ base: "center", md: "center" }}
             >
-              <Box
-                flex={1}
-                justifyContent={{ base: "center", lg: "center" }}
-                alignItems={{ base: "center", lg: "center" }}
-              >
-                <Card
-                  image={
-                    <Image
-                      source={{
-                        uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg",
-                      }}
-                      alt="image"
-                      resizeMode="cover"
-                    />
-                  }
-                  title="Shayr"
-                  subtitle="A social network for sharing poetry"
-                  description="Shayr is a social network for sharing poetry. It's a place for poets to share their work and for readers to discover new poets. Shayr is a passion project of mine. I built it to learn more about building a social network and to explore the intersection of poetry and technology."
-                  meta="React Native, Expo, Firebase, TypeScript"
-                  w={cardWidth}
-                />
-              </Box>
+              <Card
+                ref={ref}
+                image={
+                  <Image
+                    source={{
+                      uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg",
+                    }}
+                    alt="image"
+                    resizeMode="cover"
+                  />
+                }
+                title="Shayr"
+                subtitle="A social network for sharing poetry"
+                description="Shayr is a social network for sharing poetry. It's a place for poets to share their work and for readers to discover new poets. Shayr is a passion project of mine. I built it to learn more about building a social network and to explore the intersection of poetry and technology."
+                meta="React Native, Expo, Firebase, TypeScript"
+                w={cardWidth}
+              />
             </Box>
             <Box
               flex={1}
-              justifyContent={{ base: "center", lg: "center" }}
-              alignItems={{ base: "center", lg: "center" }}
+              justifyContent="flex-start"
+              alignItems={{ base: "center", md: "center" }}
             >
-              <Box
-                flex={1}
-                justifyContent={{ base: "center", lg: "center" }}
-                alignItems={{ base: "center", lg: "center" }}
-              >
-                <Card
-                  image={
-                    <Image
-                      source={{
-                        uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg",
-                      }}
-                      alt="image"
-                      resizeMode="cover"
-                    />
-                  }
-                  title="Shayr"
-                  subtitle="A social network for sharing poetry"
-                  description="Shayr is a social network for sharing poetry. It's a place for poets to share their work and for readers to discover new poets. Shayr is a passion project of mine. I built it to learn more about building a social network and to explore the intersection of poetry and technology."
-                  meta="React Native, Expo, Firebase, TypeScript"
-                  w={cardWidth}
-                />
-              </Box>
+              <Card
+                ref={ref}
+                image={
+                  <Image
+                    source={{
+                      uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg",
+                    }}
+                    alt="image"
+                    resizeMode="cover"
+                  />
+                }
+                title="Shayr"
+                subtitle="A social network for sharing poetry"
+                description="Shayr is a social network for sharing poetry. It's a place for poets to share their work and for readers to discover new poets. Shayr is a passion project of mine. I built it to learn more about building a social network and to explore the intersection of poetry and technology."
+                meta="React Native, Expo, Firebase, TypeScript"
+                w={cardWidth}
+              />
             </Box>
           </Carousel>
         </VStack>
       </Stack>
       <Stack
-        flex={1}
-        space={{ base: "5", lg: "10" }}
-        direction={{ base: "column", lg: "row" }}
-        px={{ base: "4", lg: "8" }}
-        py={{ base: "3", lg: "5" }}
-        alignItems={{ base: "center", lg: "center" }}
+        space={{ base: "5", md: "10" }}
+        direction={{ base: "column-reverse", md: "row-reverse" }}
+        px={{ base: "4", md: "8" }}
+        py={{ base: "3", md: "5" }}
+        alignItems="center"
       >
+        <VStack
+          flex={1}
+          alignItems={useBreakpointValue({
+            base: "center",
+            md: "flex-start",
+          })}
+        >
+          <Text
+            fontFamily="heading"
+            fontWeight="200"
+            fontSize="3xl"
+            textAlign={{ base: "center", md: "left" }}
+            py={{ base: "3", md: "6" }}
+          >
+            Writing about products, life, and more
+          </Text>
+          <Text
+            fontFamily="body"
+            fontWeight="300"
+            fontSize="lg"
+            textAlign={{ base: "center", md: "left" }}
+            py={{ base: "2", md: "4" }}
+            // lineHeight="lg"
+          >
+            TO DO.
+          </Text>
+          <LinkWithIcon url={routes.ABOUT.path} copy="Explore my writing" />
+        </VStack>
         <VStack w={carouselContainerWidth} h={carouselContainerHeight}>
           <Carousel>
             <Box
               flex={1}
-              justifyContent={{ base: "center", lg: "center" }}
-              alignItems={{ base: "center", lg: "center" }}
+              justifyContent="flex-start"
+              alignItems={{ base: "center", md: "center" }}
             >
               <Card
+                ref={ref}
                 image={
                   <Image
                     source={{
@@ -181,165 +219,104 @@ export default function Promoted() {
             </Box>
             <Box
               flex={1}
-              justifyContent={{ base: "center", lg: "center" }}
-              alignItems={{ base: "center", lg: "center" }}
+              justifyContent="flex-start"
+              alignItems={{ base: "center", md: "center" }}
             >
-              <Box
-                flex={1}
-                justifyContent={{ base: "center", lg: "center" }}
-                alignItems={{ base: "center", lg: "center" }}
-              >
-                <Card
-                  image={
-                    <Image
-                      source={{
-                        uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg",
-                      }}
-                      alt="image"
-                      resizeMode="cover"
-                    />
-                  }
-                  title="Shayr"
-                  subtitle="A social network for sharing poetry"
-                  description="Shayr is a social network for sharing poetry. It's a place for poets to share their work and for readers to discover new poets. Shayr is a passion project of mine. I built it to learn more about building a social network and to explore the intersection of poetry and technology."
-                  meta="React Native, Expo, Firebase, TypeScript"
-                  w={cardWidth}
-                />
-              </Box>
+              <Card
+                ref={ref}
+                image={
+                  <Image
+                    source={{
+                      uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg",
+                    }}
+                    alt="image"
+                    resizeMode="cover"
+                  />
+                }
+                title="Shayr"
+                subtitle="A social network for sharing poetry"
+                description="Shayr is a social network for sharing poetry. It's a place for poets to share their work and for readers to discover new poets. Shayr is a passion project of mine. I built it to learn more about building a social network and to explore the intersection of poetry and technology."
+                meta="React Native, Expo, Firebase, TypeScript"
+                w={cardWidth}
+              />
             </Box>
             <Box
               flex={1}
-              justifyContent={{ base: "center", lg: "center" }}
-              alignItems={{ base: "center", lg: "center" }}
+              justifyContent="flex-start"
+              alignItems={{ base: "center", md: "center" }}
             >
-              <Box
-                flex={1}
-                justifyContent={{ base: "center", lg: "center" }}
-                alignItems={{ base: "center", lg: "center" }}
-              >
-                <Card
-                  image={
-                    <Image
-                      source={{
-                        uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg",
-                      }}
-                      alt="image"
-                      resizeMode="cover"
-                    />
-                  }
-                  title="Shayr"
-                  subtitle="A social network for sharing poetry"
-                  description="Shayr is a social network for sharing poetry. It's a place for poets to share their work and for readers to discover new poets. Shayr is a passion project of mine. I built it to learn more about building a social network and to explore the intersection of poetry and technology."
-                  meta="React Native, Expo, Firebase, TypeScript"
-                  w={cardWidth}
-                />
-              </Box>
+              <Card
+                ref={ref}
+                image={
+                  <Image
+                    source={{
+                      uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg",
+                    }}
+                    alt="image"
+                    resizeMode="cover"
+                  />
+                }
+                title="Shayr"
+                subtitle="A social network for sharing poetry"
+                description="Shayr is a social network for sharing poetry. It's a place for poets to share their work and for readers to discover new poets. Shayr is a passion project of mine. I built it to learn more about building a social network and to explore the intersection of poetry and technology."
+                meta="React Native, Expo, Firebase, TypeScript"
+                w={cardWidth}
+              />
             </Box>
           </Carousel>
         </VStack>
-        <VStack flex={1} alignItems={{ base: "center", lg: "flex-start" }}>
-          <Text
-            fontFamily="heading"
-            fontWeight="200"
-            fontSize="3xl"
-            textAlign={{ base: "center", lg: "left" }}
-            py={{ base: "3", lg: "6" }}
-          >
-            I’m passionate about creating products people love.
-          </Text>
-          <Text
-            fontFamily="body"
-            fontWeight="300"
-            fontSize="lg"
-            textAlign={{ base: "center", lg: "left" }}
-            py={{ base: "2", lg: "4" }}
-            lineHeight="lg"
-          >
-            I love solving a problem so well for someone that they can’t stop
-            talking about how great your product is. Products like this come
-            from listening to people and acting on their feedback. This doesn’t
-            mean building precisely what’s described. It means thoughtfully
-            combining a deep understanding of the problem with data revealing
-            how people actually behave. It means considering a wide range of
-            solutions, then choosing the best one intentionally. And it means
-            keeping things simple by staying focused on why people use your
-            product.
-          </Text>
-          <HoverStyle py={{ base: "2", lg: "4" }}>
-            <Link
-              _text={{
-                fontSize: "xl",
-                fontFamily: "body",
-                fontWeight: "500",
-              }}
-              isUnderlined={false}
-              href={"mailto:whitehead.davis@gmail.com"}
-              isExternal
-            >
-              -- Let’s discuss creating products people love!
-            </Link>
-          </HoverStyle>
-        </VStack>
       </Stack>
       <Stack
-        flex={1}
-        space={{ base: "5", lg: "10" }}
-        direction={{ base: "column-reverse", lg: "row" }}
-        px={{ base: "4", lg: "8" }}
-        py={{ base: "3", lg: "5" }}
-        alignItems={{ base: "center", lg: "center" }}
+        space={{ base: "5", md: "10" }}
+        direction={{ base: "column-reverse", md: "row" }}
+        px={{ base: "4", md: "8" }}
+        py={{ base: "3", md: "5" }}
+        alignItems="center"
       >
-        <VStack flex={1} alignItems={{ base: "center", lg: "flex-start" }}>
+        <VStack
+          flex={1}
+          alignItems={useBreakpointValue({
+            base: "center",
+            md: "flex-start",
+          })}
+        >
           <Text
             fontFamily="heading"
             fontWeight="200"
             fontSize="3xl"
-            textAlign={{ base: "center", lg: "left" }}
-            py={{ base: "3", lg: "6" }}
+            textAlign={{ base: "center", md: "left" }}
+            py={{ base: "3", md: "6" }}
           >
-            I’m passionate about creating products people love.
+            Finding energizing work
           </Text>
           <Text
             fontFamily="body"
             fontWeight="300"
             fontSize="lg"
-            textAlign={{ base: "center", lg: "left" }}
-            py={{ base: "2", lg: "4" }}
-            lineHeight="lg"
+            textAlign={{ base: "center", md: "left" }}
+            py={{ base: "2", md: "4" }}
+            // lineHeight="lg"
           >
-            I love solving a problem so well for someone that they can’t stop
-            talking about how great your product is. Products like this come
-            from listening to people and acting on their feedback. This doesn’t
-            mean building precisely what’s described. It means thoughtfully
-            combining a deep understanding of the problem with data revealing
-            how people actually behave. It means considering a wide range of
-            solutions, then choosing the best one intentionally. And it means
-            keeping things simple by staying focused on why people use your
-            product.
+            My expertise is in digital, consumer products. I specialize in
+            understanding problems people have, then developing a product that
+            delightfully solves their problems. I aspire to create innovative
+            products that benefit a user so much they can’t stop talking about
+            it.
           </Text>
-          <HoverStyle py={{ base: "2", lg: "4" }}>
-            <Link
-              _text={{
-                fontSize: "xl",
-                fontFamily: "body",
-                fontWeight: "500",
-              }}
-              isUnderlined={false}
-              href={"mailto:whitehead.davis@gmail.com"}
-              isExternal
-            >
-              -- Let’s discuss creating products people love!
-            </Link>
-          </HoverStyle>
+          <LinkWithIcon
+            url={"mailto:whitehead.davis@gmail.com"}
+            copy="Connect with me"
+          />
         </VStack>
         <VStack w={carouselContainerWidth} h={carouselContainerHeight}>
           <Carousel>
             <Box
               flex={1}
-              justifyContent={{ base: "center", lg: "center" }}
-              alignItems={{ base: "center", lg: "center" }}
+              justifyContent="flex-start"
+              alignItems={{ base: "center", md: "center" }}
             >
               <Card
+                ref={ref}
                 image={
                   <Image
                     source={{
@@ -358,59 +335,49 @@ export default function Promoted() {
             </Box>
             <Box
               flex={1}
-              justifyContent={{ base: "center", lg: "center" }}
-              alignItems={{ base: "center", lg: "center" }}
+              justifyContent="flex-start"
+              alignItems={{ base: "center", md: "center" }}
             >
-              <Box
-                flex={1}
-                justifyContent={{ base: "center", lg: "center" }}
-                alignItems={{ base: "center", lg: "center" }}
-              >
-                <Card
-                  image={
-                    <Image
-                      source={{
-                        uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg",
-                      }}
-                      alt="image"
-                      resizeMode="cover"
-                    />
-                  }
-                  title="Shayr"
-                  subtitle="A social network for sharing poetry"
-                  description="Shayr is a social network for sharing poetry. It's a place for poets to share their work and for readers to discover new poets. Shayr is a passion project of mine. I built it to learn more about building a social network and to explore the intersection of poetry and technology."
-                  meta="React Native, Expo, Firebase, TypeScript"
-                  w={cardWidth}
-                />
-              </Box>
+              <Card
+                ref={ref}
+                image={
+                  <Image
+                    source={{
+                      uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg",
+                    }}
+                    alt="image"
+                    resizeMode="cover"
+                  />
+                }
+                title="Shayr"
+                subtitle="A social network for sharing poetry"
+                description="Shayr is a social network for sharing poetry. It's a place for poets to share their work and for readers to discover new poets. Shayr is a passion project of mine. I built it to learn more about building a social network and to explore the intersection of poetry and technology."
+                meta="React Native, Expo, Firebase, TypeScript"
+                w={cardWidth}
+              />
             </Box>
             <Box
               flex={1}
-              justifyContent={{ base: "center", lg: "center" }}
-              alignItems={{ base: "center", lg: "center" }}
+              justifyContent="flex-start"
+              alignItems={{ base: "center", md: "center" }}
             >
-              <Box
-                flex={1}
-                justifyContent={{ base: "center", lg: "center" }}
-                alignItems={{ base: "center", lg: "center" }}
-              >
-                <Card
-                  image={
-                    <Image
-                      source={{
-                        uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg",
-                      }}
-                      alt="image"
-                      resizeMode="cover"
-                    />
-                  }
-                  title="Shayr"
-                  subtitle="A social network for sharing poetry"
-                  description="Shayr is a social network for sharing poetry. It's a place for poets to share their work and for readers to discover new poets. Shayr is a passion project of mine. I built it to learn more about building a social network and to explore the intersection of poetry and technology."
-                  meta="React Native, Expo, Firebase, TypeScript"
-                  w={cardWidth}
-                />
-              </Box>
+              <Card
+                ref={ref}
+                image={
+                  <Image
+                    source={{
+                      uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg",
+                    }}
+                    alt="image"
+                    resizeMode="cover"
+                  />
+                }
+                title="Shayr"
+                subtitle="A social network for sharing poetry"
+                description="Shayr is a social network for sharing poetry. It's a place for poets to share their work and for readers to discover new poets. Shayr is a passion project of mine. I built it to learn more about building a social network and to explore the intersection of poetry and technology."
+                meta="React Native, Expo, Firebase, TypeScript"
+                w={cardWidth}
+              />
             </Box>
           </Carousel>
         </VStack>

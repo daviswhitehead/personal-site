@@ -31,6 +31,7 @@ export default function Carousel({ children }: Props) {
   }, [counter]);
 
   return (
+    // @ts-expect-error don't know what's going on here...
     <Swiper
       ref={swiperRef}
       loop
