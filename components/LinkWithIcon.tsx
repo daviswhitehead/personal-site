@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
   Text,
   Box,
@@ -13,15 +12,19 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons"; // east > trending
 import { Linking } from "react-native-web";
 
 interface Props {
-  url: string;
-  name?: string;
+  url?: string;
   copy: string;
+  target?: string;
+  fontSize?: string;
+  iconName?: string;
+  icon?: React.ReactNode;
+  onPress?: () => void;
 }
 
 export default function LinkWithIcon(props: Props) {
   const handlePress = (url: string) => {
     Linking.canOpenURL(url).then(() => {
-      return Linking.openURL(url, "_self");
+      return Linking.openURL(url, props.target ? props.target : "_self");
     });
   };
 
@@ -33,19 +36,30 @@ export default function LinkWithIcon(props: Props) {
       })}
       py={{ base: "4", md: "2" }}
     >
-      <Pressable onPress={() => handlePress(props.url)}>
+      <Pressable
+        onPress={
+          props.onPress
+            ? props.onPress
+            : () => props.url && handlePress(props.url)
+        }
+      >
         {({ isHovered }) => {
           const color = isHovered ? "orange.300" : "white";
           return (
             <HStack space={1} justifyContent="center" alignItems="center">
-              <Icon
-                size="5"
-                name={props.name ? props.name : "east"}
-                as={MaterialIcons}
-                _dark={{ color: color }}
-              />
+              {props.icon ? (
+                // @ts-expect-error duno...
+                React.cloneElement(props.icon, { _dark: { color: color } })
+              ) : (
+                <Icon
+                  size="5"
+                  name={props.iconName ? props.iconName : "east"}
+                  as={MaterialIcons}
+                  _dark={{ color: color }}
+                />
+              )}
               <Text
-                fontSize="lg"
+                fontSize={props.fontSize ? props.fontSize : "md"}
                 fontFamily="body"
                 fontWeight="300"
                 _dark={{ color: color }}

@@ -3,16 +3,16 @@ const { withNativebase } = require("@native-base/next-adapter");
 // const { withExpo } = require("@expo/next-adapter");
 const path = require("path");
 
+// module.exports = withNativebase([withExpo], {
 module.exports = withNativebase({
   dependencies: [
     "@native-base/icons",
-    "react-native-web-linear-gradient",
-    "@expo/next-adapter",
+    // "@expo/next-adapter",
     "react-native-vector-icons",
-    // "react-native-vector-icons-for-web",
+    "react-native-vector-icons-for-web",
   ],
   nextConfig: {
-    webpack: (config, options) => {
+    webpack: (config) => {
       config.module.rules.push({
         test: /\.ttf$/,
         loader: "url-loader", // or directly file-loader
@@ -21,7 +21,6 @@ module.exports = withNativebase({
       config.resolve.alias = {
         ...(config.resolve.alias || {}),
         "react-native$": "react-native-web",
-        "react-native-linear-gradient": "react-native-web-linear-gradient",
         "@expo/vector-icons": "react-native-vector-icons",
       };
       config.resolve.extensions = [

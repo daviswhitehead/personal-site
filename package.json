@@ -38,7 +38,7 @@
     "@types/react-native": "^0.67.1",
     "@types/react-native-vector-icons": "^6.4.13",
     "@typescript-eslint/eslint-plugin": "^5.48.1",
-    "babel-preset-expo": "^8.5.1",
+    "babel-preset-expo": "^9.2.2",
     "eslint": "7",
     "eslint-config-next": "12.0.4",
     "eslint-config-prettier": "^8.6.0",

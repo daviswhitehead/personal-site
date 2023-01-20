@@ -3,7 +3,6 @@ import { Box, useBreakpointValue } from "native-base";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Promoted from "../components/Promoted";
-import Subscribe from "../components/Subscribe";
 import Footer from "../components/Footer";
 
 export default function HomeScreen() {
@@ -26,7 +25,6 @@ export default function HomeScreen() {
         <Header />
         <Hero />
         <Promoted />
-        <Subscribe />
         <Footer />
       </Box>
     </Box>
