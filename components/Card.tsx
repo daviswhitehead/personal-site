@@ -9,6 +9,7 @@ export interface Props {
   description: string;
   meta: string;
   w: number | string;
+  hoverColor?: string;
 }
 
 const Card = (props: Props, ref: HTMLElement) => {
@@ -24,12 +25,17 @@ const Card = (props: Props, ref: HTMLElement) => {
       _dark={{ borderColor: "gray.500" }}
       w={props.w}
     >
-      <AspectRatio w="100%" ratio={16 / 5}>
+      <AspectRatio w="100%" ratio={16 / 9}>
         {props.image}
       </AspectRatio>
       <Stack p="4" space={2}>
         <Stack space={0}>
-          <Text fontSize="lg" fontFamily="heading" fontWeight="800">
+          <Text
+            fontSize="lg"
+            fontFamily="heading"
+            fontWeight="800"
+            _dark={{ color: props.hoverColor ? props.hoverColor : "white" }}
+          >
             {_.truncate(props.title, {
               length: 50,
               separator: " ",
@@ -37,7 +43,7 @@ const Card = (props: Props, ref: HTMLElement) => {
           </Text>
           <Text fontFamily="heading" fontWeight="200" fontSize="sm" mt="-.5">
             {_.truncate(props.subtitle, {
-              length: 100,
+              length: 60,
               separator: " ",
             })}
           </Text>
@@ -59,7 +65,7 @@ const Card = (props: Props, ref: HTMLElement) => {
               fontWeight="500"
             >
               {_.truncate(props.meta, {
-                length: 100,
+                length: 50,
                 separator: " ",
               })}
             </Text>

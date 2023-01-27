@@ -9,7 +9,7 @@ const social = {
     icon: <Icon size="5" name="at" as={MaterialCommunityIcons} />,
   },
   calendar: {
-    link: "https://www.facebook.com/whitehead.davis",
+    link: "https://calendly.com/daviswhitehead/30min",
     label: "Schedule A Meeting",
     icon: <Icon size="5" name="calendar" as={MaterialCommunityIcons} />,
   },
@@ -43,6 +43,7 @@ const social = {
     label: "Facebook",
     icon: <Icon size="5" name="facebook" as={MaterialCommunityIcons} />,
   },
+  // RSS
 };
 
 export default social;

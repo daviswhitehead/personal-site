@@ -8,35 +8,33 @@ interface Props {
 
 export default function SubscribeModal(props: Props) {
   return (
-    <>
-      <Modal
-        isOpen={props.modalVisible}
-        onClose={() => props.setModalVisible(false)}
-        avoidKeyboard
-        size="lg"
-      >
-        <Modal.Content>
-          <Modal.CloseButton />
-          <Modal.Header>Forgot Password?</Modal.Header>
-          <Modal.Body>
-            Enter email address and we’ll send a link to reset your password.
-            <FormControl mt="3">
-              <FormControl.Label>Email</FormControl.Label>
-              <Input />
-            </FormControl>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              flex="1"
-              onPress={() => {
-                props.setModalVisible(false);
-              }}
-            >
-              Proceed
-            </Button>
-          </Modal.Footer>
-        </Modal.Content>
-      </Modal>
-    </>
+    <Modal
+      isOpen={props.modalVisible}
+      onClose={() => props.setModalVisible(false)}
+      avoidKeyboard
+      size="lg"
+    >
+      <Modal.Content position="sticky" marginTop={0} top="200" bottom="200">
+        <Modal.CloseButton />
+        <Modal.Header>Coming Soon</Modal.Header>
+        <Modal.Body>
+          Coming soon!
+          <FormControl mt="3">
+            <FormControl.Label>Email</FormControl.Label>
+            <Input />
+          </FormControl>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            flex="1"
+            onPress={() => {
+              props.setModalVisible(false);
+            }}
+          >
+            Close me
+          </Button>
+        </Modal.Footer>
+      </Modal.Content>
+    </Modal>
   );
 }

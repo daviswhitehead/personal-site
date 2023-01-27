@@ -18,6 +18,7 @@ interface Props {
   fontSize?: string;
   iconName?: string;
   icon?: React.ReactNode;
+  noIcon?: boolean;
   onPress?: () => void;
 }
 
@@ -34,7 +35,7 @@ export default function LinkWithIcon(props: Props) {
         base: "center",
         xl: "flex-start",
       })}
-      py={{ base: "4", md: "2" }}
+      py={{ base: "2", md: "2" }}
     >
       <Pressable
         onPress={
@@ -47,21 +48,23 @@ export default function LinkWithIcon(props: Props) {
           const color = isHovered ? "orange.300" : "white";
           return (
             <HStack space={1} justifyContent="center" alignItems="center">
-              {props.icon ? (
-                // @ts-expect-error duno...
-                React.cloneElement(props.icon, { _dark: { color: color } })
-              ) : (
-                <Icon
-                  size="5"
-                  name={props.iconName ? props.iconName : "east"}
-                  as={MaterialIcons}
-                  _dark={{ color: color }}
-                />
-              )}
+              {!props.noIcon &&
+                (props.icon ? (
+                  // @ts-expect-error duno...
+                  React.cloneElement(props.icon, { _dark: { color: color } })
+                ) : (
+                  <Icon
+                    size="5"
+                    name={props.iconName ? props.iconName : "east"}
+                    as={MaterialIcons}
+                    _dark={{ color: color }}
+                  />
+                ))}
               <Text
                 fontSize={props.fontSize ? props.fontSize : "md"}
                 fontFamily="body"
                 fontWeight="300"
+                textAlign={"left"}
                 _dark={{ color: color }}
               >
                 {props.copy}

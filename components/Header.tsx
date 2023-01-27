@@ -4,25 +4,48 @@ import HeaderMobile from "./HeaderMobile";
 import HeaderDesktop from "./HeaderDesktop";
 import Drawer from "./Drawer";
 
-export default function Header() {
+interface Props {
+  modalVisible: boolean;
+  setModalVisible: (value: boolean) => void;
+}
+
+export default function Header(props: Props) {
   const [isSidebarVisible, setIsSidebarVisible] = React.useState(false);
   function toggleSidebar() {
     setIsSidebarVisible(!isSidebarVisible);
   }
 
   return (
-    <Box px={{ base: "4", md: "8" }} py={{ base: "3", md: "5" }}>
+    <Box
+      px={{ base: "4", md: "8" }}
+      py={{ base: "3", md: "5" }}
+      position="sticky"
+      top="0"
+      _dark={{
+        bg: "gray.800",
+      }}
+      opacity="0.97"
+      zIndex={1}
+    >
       <Hidden from="md">
         <Box>
           <HeaderMobile
             toggleDrawer={toggleSidebar}
-            isDrawerVisible={isSidebarVisible}
+            isDrawerVisible={props.modalVisible ? false : isSidebarVisible}
           />
-          {isSidebarVisible && <Drawer />}
+          {isSidebarVisible && (
+            <Drawer
+              modalVisible={props.modalVisible}
+              setModalVisible={props.setModalVisible}
+            />
+          )}
         </Box>
       </Hidden>
       <Hidden till="md">
-        <HeaderDesktop />
+        <HeaderDesktop
+          modalVisible={props.modalVisible}
+          setModalVisible={props.setModalVisible}
+        />
       </Hidden>
     </Box>
   );

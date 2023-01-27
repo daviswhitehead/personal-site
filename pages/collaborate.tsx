@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Text } from "native-base";
 
-export default function HomeScreen() {
+export default function ComingSoon() {
   return (
     <Box
       flex={1}

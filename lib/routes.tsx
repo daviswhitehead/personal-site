@@ -9,15 +9,25 @@ const routes = {
     name: "about",
     title: "About",
   },
-  WORK: {
-    path: "/work",
-    name: "work",
-    title: "Work",
+  PRODUCTS: {
+    path: "/products",
+    name: "products",
+    title: "Products",
   },
   WRITING: {
     path: "/writing",
     name: "writing",
     title: "Writing",
+  },
+  COLLABORATE: {
+    path: "/collaborate",
+    name: "collaborate",
+    title: "Collaborate",
+  },
+  COMINGSOON: {
+    path: "/comingsoon",
+    name: "comingsoon",
+    title: "Coming Soon",
   },
   // COMMUNITY: {
   //   path: '/community',

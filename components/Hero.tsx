@@ -48,8 +48,8 @@ export default function Hero() {
             fontSize="3xl"
             textAlign={{ base: "center", md: "left" }}
           >
-            I’m a product maker. I make products people love. And I enjoy
-            collaborating with others.
+            I’m a product maker. I make products people love. I write about
+            living life well. And I enjoy collaborating with others.
           </Text>
           <LinkWithIcon url={routes.ABOUT.path} copy="Learn more about me" />
         </VStack>

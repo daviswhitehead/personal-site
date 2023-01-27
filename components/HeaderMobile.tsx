@@ -16,6 +16,8 @@ export default function HeaderMobile(props: Props) {
         <Link
           _text={{
             fontSize: "lg",
+            fontFamily: "body",
+            fontWeight: "300",
           }}
           isUnderlined={false}
           href={routes.HOME.path}

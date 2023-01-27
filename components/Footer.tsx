@@ -9,11 +9,17 @@ export default function Footer() {
   return (
     <Box px={{ base: "4", md: "8" }} py={{ base: "3", md: "5" }}>
       <Stack
-        direction={{ base: "column", md: "row" }}
+        direction={{ base: "column-reverse", md: "row" }}
         justifyContent={{ base: "center", md: "space-between" }}
         alignItems="center"
+        space={{ base: 5, md: 5 }}
       >
-        <HStack space={5} alignItems="center">
+        <Stack
+          direction={{ base: "column", md: "row" }}
+          justifyContent={{ base: "center", md: "space-between" }}
+          alignItems="center"
+          space={{ base: 0, md: 5 }}
+        >
           <HoverStyle>
             <Link
               _text={{
@@ -34,7 +40,7 @@ export default function Footer() {
               fontSize="sm"
             />
           </HStack>
-        </HStack>
+        </Stack>
         <HStack alignItems="flex-start" space={5}>
           {Object.entries(socials).map(([key, value]) => {
             return (

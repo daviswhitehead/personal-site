@@ -13,18 +13,18 @@ export default function Carousel({ children }: Props) {
   const swiperRef = useRef(null);
 
   const [counter, setCounter] = useState<number>(counterInit);
-  const timer = useRef<number>(null);
+  const timerRef = useRef<number>(0);
 
   useEffect(() => {
-    if (timer.current) {
+    if (timerRef.current < 10) {
       // @ts-expect-error can't figure out this ref thing
-      timer.current =
+
+      timerRef.current =
         counter < timeout &&
         setInterval(() => setCounter((counter) => counter + 0.2), 200);
 
       return () => {
-        // @ts-expect-error can't figure out this ref thing
-        clearInterval(timer.current);
+        clearInterval(timerRef.current);
       };
     } else {
     }
@@ -53,7 +53,8 @@ export default function Carousel({ children }: Props) {
                     _filledTrack={{
                       _dark: { bg: "orange.400" },
                     }}
-                    value={(counter / timeout) * 100}
+                    value={timeout * 100}
+                    // value={(counter / timeout) * 100}
                     size="sm"
                   />
                 </Pressable>
