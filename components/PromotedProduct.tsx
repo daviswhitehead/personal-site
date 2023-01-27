@@ -74,8 +74,8 @@ export default function Promoted() {
           delightfully solves their problems. I aspire to create innovative
           products that benefit a user so much they can’t stop talking about it.
         </Text>
-        <LinkWithIcon url={routes.ABOUT.path} copy="Checkout my products" />
-        <LinkWithIcon url={routes.COMINGSOON.path} copy="Become a patron" />
+        <LinkWithIcon url={routes.PRODUCTS.path} copy="Checkout my products" />
+        <LinkWithIcon url={routes.PATRON.path} copy="Become a patron" />
       </VStack>
       <VStack w={carouselContainerWidth} h={carouselContainerHeight}>
         <Carousel>

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import type { AppProps } from "next/app";
 import { NativeBaseProvider, extendTheme } from "native-base";
 import Head from "next/head";
+import Script from "next/script";
+import { useRouter } from "next/router";
+import { GA_MEASUREMENT_ID, trackPageview } from "../lib/gtag";
 
 const config = {
   useSystemColorMode: false,
@@ -11,6 +14,20 @@ const config = {
 const customTheme = extendTheme({ config });
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      trackPageview(url);
+    };
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
+
   return (
     <>
       <Head>
@@ -35,6 +52,20 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
         <link rel="manifest" href="/favicon/site.webmanifest" />
       </Head>
+      {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}}`}
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', '${GA_MEASUREMENT_ID}');
+        `}
+      </Script>
       <NativeBaseProvider isSSR theme={customTheme}>
         {/* @ts-expect-error ??? */}
         <Component {...pageProps} />

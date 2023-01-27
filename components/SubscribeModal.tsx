@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, FormControl, Input, Modal } from "native-base";
+import { trackEvent, composeAction } from "../lib/gtag";
+import { categories, actions, objects } from "../lib/analyticsDefinitions";
 
 interface Props {
   modalVisible: boolean;
@@ -7,6 +9,15 @@ interface Props {
 }
 
 export default function SubscribeModal(props: Props) {
+  useEffect(() => {
+    if (props.modalVisible) {
+      trackEvent({
+        action: composeAction(actions.VIEW, objects.SUBSCRIBE_MODAL),
+        category: categories.SUBSCRIBE,
+      });
+    }
+  }, [props.modalVisible]);
+
   return (
     <Modal
       isOpen={props.modalVisible}

@@ -3,6 +3,8 @@ import { HStack, Link } from "native-base";
 import HoverStyle from "./HoverStyle";
 import routes from "../lib/routes";
 import LinkWithIcon from "./LinkWithIcon";
+import { composeAction, trackEvent } from "../lib/gtag";
+import { categories, actions, objects } from "../lib/analyticsDefinitions";
 
 const list = [
   routes.ABOUT,
@@ -55,6 +57,11 @@ export default function Header(props: Props) {
       </HStack>
       <LinkWithIcon
         onPress={() => {
+          trackEvent({
+            action: composeAction(actions.PRESS, objects.SUBSCRIBE_LINK),
+            category: categories.HEADER,
+            label: "Subscribe",
+          });
           props.setModalVisible(!props.modalVisible);
         }}
         copy="Subscribe"
