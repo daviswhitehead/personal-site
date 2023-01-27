@@ -5,7 +5,7 @@ import {
   Text,
   VStack,
   useBreakpointValue,
-  Divider,
+  Box,
 } from "native-base";
 import LinkWithIcon from "./LinkWithIcon";
 import SubscribeModal from "./SubscribeModal";
@@ -14,26 +14,31 @@ import CardWriting from "./CardWriting";
 import digitalBookLibrary from "../public/images/digitalBookLibrary.png";
 import eggShopping from "../public/images/eggShopping.png";
 import touchscreenCookbook from "../public/images/touchscreenCookbook.png";
-import PressableStyle from "../components/PressableStyle";
+import PressableStyle from "./PressableStyle";
+import Carousel from "./Carousel";
 
 export default function Promoted() {
   const [modalVisible, setModalVisible] = useState(false);
 
   const [cardHeight, setCardHeight] = useState(0);
-  const ref = useRef<HTMLElement>(null);
+  const refA = useRef<HTMLElement>(null);
+  const refB = useRef<HTMLElement>(null);
+  const refC = useRef<HTMLElement>(null);
 
   useEffect(() => {
     setTimeout(() => {
-      if (ref.current) {
-        setCardHeight(ref.current.offsetHeight);
+      if (refC.current) {
+        setCardHeight(refC.current.offsetHeight);
       }
     }, 0);
   }, [cardHeight]);
 
+  const cardWidth = "90%";
   const carouselContainerWidth = useBreakpointValue({
     base: "100%",
     md: "500",
   });
+  const carouselContainerHeight = cardHeight + 40;
 
   return (
     <Stack
@@ -86,62 +91,78 @@ export default function Promoted() {
           setModalVisible={setModalVisible}
         />
       </VStack>
-      <VStack
-        w={carouselContainerWidth}
-        divider={
-          <Divider
-            orientation="horizontal"
-            thickness={0.1}
-            _dark={{ borderColor: "gray.500" }}
-          />
-        }
-        space={1}
-      >
-        <PressableStyle url={routes.WRITING.path}>
-          <CardWriting
-            size="base"
-            image={
-              <Image
-                source={{ uri: digitalBookLibrary.src }}
-                alt="Highlights from WHOOP's Sleep Coaching."
-                resizeMode="cover"
+      <VStack w={carouselContainerWidth} h={carouselContainerHeight}>
+        <Carousel>
+          <PressableStyle url={routes.WRITING.path}>
+            <Box
+              flex={1}
+              justifyContent="flex-start"
+              alignItems={{ base: "center", md: "center" }}
+            >
+              <CardWriting
+                ref={refA}
+                size="base"
+                image={
+                  <Image
+                    source={{ uri: digitalBookLibrary.src }}
+                    alt="Highlights from WHOOP's Sleep Coaching."
+                    resizeMode="cover"
+                  />
+                }
+                title="Digital books are superior to analog in all but one way"
+                description="I prefer digital books to analog. A digital book collection means you have your entire library in your pocket, saving physical space in your home. However, a digital library is invisible compared to an analog one. The visibility of an analog library is where analog beats digital."
+                publishDate="Jan 26, 2023"
+                w={cardWidth}
               />
-            }
-            title="Digital books are superior to analog in all but one way"
-            description="I prefer digital books to analog. A digital book collection means you have your entire library in your pocket, saving physical space in your home. However, a digital library is invisible compared to an analog one. The visibility of an analog library is where analog beats digital."
-            publishDate="Jan 26, 2023"
-          />
-        </PressableStyle>
-        <PressableStyle url={routes.WRITING.path}>
-          <CardWriting
-            size="base"
-            image={
-              <Image
-                source={{ uri: eggShopping.src }}
-                alt="Highlights from WHOOP's Sleep Coaching."
-                resizeMode="cover"
+            </Box>
+          </PressableStyle>
+          <PressableStyle url={routes.PRODUCTS.path}>
+            <Box
+              flex={1}
+              justifyContent="flex-start"
+              alignItems={{ base: "center", md: "center" }}
+            >
+              <CardWriting
+                ref={refB}
+                size="base"
+                image={
+                  <Image
+                    source={{ uri: eggShopping.src }}
+                    alt="Highlights from WHOOP's Sleep Coaching."
+                    resizeMode="cover"
+                  />
+                }
+                title="How to buy the perfect carton of eggs"
+                description="I panic when it's time to buy eggs. The egg section of a grocery store has so too many options. The number of brands, prices, sizes, colors, animal-welfare descriptors, etc is overwhelming and makes a values-aligned purchase decision challenging. Is cage-free worth an extra $2?? I don't know :/."
+                publishDate="Jan 23, 2023"
+                w={cardWidth}
               />
-            }
-            title="How to buy the perfect carton of eggs"
-            description="I panic when it's time to buy eggs. The egg section of a grocery store has so too many options. The number of brands, prices, sizes, colors, animal-welfare descriptors, etc is overwhelming and makes a values-aligned purchase decision challenging. Is cage-free worth an extra $2?? I don't know :/."
-            publishDate="Jan 23, 2023"
-          />
-        </PressableStyle>
-        <PressableStyle url={routes.WRITING.path}>
-          <CardWriting
-            size="base"
-            image={
-              <Image
-                source={{ uri: touchscreenCookbook.src }}
-                alt="Highlights from WHOOP's Sleep Coaching."
-                resizeMode="cover"
+            </Box>
+          </PressableStyle>
+          <PressableStyle url={routes.PRODUCTS.path}>
+            <Box
+              flex={1}
+              justifyContent="flex-start"
+              alignItems={{ base: "center", md: "center" }}
+            >
+              <CardWriting
+                ref={refC}
+                size="base"
+                image={
+                  <Image
+                    source={{ uri: touchscreenCookbook.src }}
+                    alt="Highlights from WHOOP's Sleep Coaching."
+                    resizeMode="cover"
+                  />
+                }
+                title="How Michelin star chefs keep track of their recipes"
+                description="What should we have for dinner tonight? The question posed in billions of households per day. As my family's chef de cuisine, I'm usually responsible for answering this question. That's easier said than done when you've cooked the same thing the last three weeks and you're not feeling inspired."
+                publishDate="Jan 21, 2023"
+                w={cardWidth}
               />
-            }
-            title="How Michelin star chefs keep track of their recipes"
-            description="What should we have for dinner tonight? The question posed in billions of households per day. As my family's chef de cuisine, I'm usually responsible for answering this question. That's easier said than done when you've cooked the same thing the last three weeks and you're not feeling inspired."
-            publishDate="Jan 21, 2023"
-          />
-        </PressableStyle>
+            </Box>
+          </PressableStyle>
+        </Carousel>
       </VStack>
     </Stack>
   );

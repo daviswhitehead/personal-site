@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { Stack, Text, AspectRatio, Box } from "native-base";
 import _ from "lodash";
 
@@ -11,9 +11,10 @@ export interface Props {
   size: "base" | "sm" | "md" | "lg" | "xl";
   url?: string;
   hoverColor?: string;
+  w: number | string;
 }
 
-export default function CardWriting(props: Props) {
+const Card = (props: Props, ref: HTMLElement) => {
   const imageSize = {
     base: "100",
     sm: "125",
@@ -28,6 +29,14 @@ export default function CardWriting(props: Props) {
       direction={{ base: "row", md: "row" }}
       justifyContent={{ base: "flex-start", md: "flex-start" }}
       alignItems="flex-start"
+      // @ts-expect-error can't figure out this ref thing
+      ref={ref}
+      rounded="xl"
+      overflow="hidden"
+      borderWidth={1}
+      shadow={4}
+      _dark={{ borderColor: "gray.500" }}
+      w={props.w}
     >
       <Box
         m="2"
@@ -75,4 +84,10 @@ export default function CardWriting(props: Props) {
       </Stack>
     </Stack>
   );
-}
+};
+
+// @ts-expect-error can't figure out this ref thing
+const forwardedRefCard = forwardRef(Card);
+
+// Exporting the wrapped component
+export default forwardedRefCard;
