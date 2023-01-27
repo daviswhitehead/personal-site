@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Box, Text, useBreakpointValue } from "native-base";
 import Header from "../components/Header";
 import SubscribeModal from "../components/SubscribeModal";
