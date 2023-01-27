@@ -3,6 +3,8 @@ import { Box, VStack, Link } from "native-base";
 import routes from "../lib/routes";
 import HoverStyle from "./HoverStyle";
 import LinkWithIcon from "./LinkWithIcon";
+import { composeAction, trackEvent } from "lib/gtag";
+import { actions, categories, objects } from "lib/analyticsDefinitions";
 
 const list = [
   routes.ABOUT,
@@ -40,6 +42,11 @@ export default function Drawer(props: Props) {
         })}
         <LinkWithIcon
           onPress={() => {
+            trackEvent({
+              action: composeAction(actions.PRESS, objects.SUBSCRIBE_LINK),
+              category: categories.HEADER,
+              label: "Subscribe",
+            });
             props.setModalVisible(!props.modalVisible);
           }}
           copy="Subscribe"

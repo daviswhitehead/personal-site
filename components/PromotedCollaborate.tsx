@@ -96,7 +96,7 @@ export default function Promoted() {
               image={
                 <Image
                   source={{ uri: helpMeBuildProduct.src }}
-                  alt="Highlights from Shayr."
+                  alt="Help me build product!"
                   resizeMode="cover"
                 />
               }
@@ -113,7 +113,7 @@ export default function Promoted() {
               image={
                 <Image
                   source={{ uri: shareYourFeedbackWithMe.src }}
-                  alt="Highlights from Shayr."
+                  alt="Share your feedback with me 🙏."
                   resizeMode="cover"
                 />
               }
@@ -130,7 +130,7 @@ export default function Promoted() {
               image={
                 <Image
                   source={{ uri: howCanIHelpYou.src }}
-                  alt="Highlights from Shayr."
+                  alt="How can I help you?"
                   resizeMode="cover"
                 />
               }

@@ -16,6 +16,8 @@ import eggShopping from "../public/images/eggShopping.png";
 import touchscreenCookbook from "../public/images/touchscreenCookbook.png";
 import PressableStyle from "./PressableStyle";
 import Carousel from "./Carousel";
+import { composeAction, trackEvent } from "lib/gtag";
+import { actions, categories, objects } from "lib/analyticsDefinitions";
 
 export default function Promoted() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -78,10 +80,14 @@ export default function Promoted() {
           think critically, and to live transparently. I’d love to hear your
           feedback.
         </Text>
-        <LinkWithIcon url={routes.ABOUT.path} copy="Explore my writing" />
-        {/* <FloatingLabelInput></FloatingLabelInput> */}
+        <LinkWithIcon url={routes.WRITING.path} copy="Explore my writing" />
         <LinkWithIcon
           onPress={() => {
+            trackEvent({
+              action: composeAction(actions.PRESS, objects.SUBSCRIBE_LINK),
+              category: categories.HOME,
+              label: "Subscribe to my newsletter",
+            });
             setModalVisible(!modalVisible);
           }}
           copy="Subscribe to my newsletter"
@@ -105,7 +111,7 @@ export default function Promoted() {
                 image={
                   <Image
                     source={{ uri: digitalBookLibrary.src }}
-                    alt="Highlights from WHOOP's Sleep Coaching."
+                    alt="a digital book library where the books are inside of a medium-sized touch screen mounted on a wall inside a living room."
                     resizeMode="cover"
                   />
                 }
@@ -116,7 +122,7 @@ export default function Promoted() {
               />
             </Box>
           </PressableStyle>
-          <PressableStyle url={routes.PRODUCTS.path}>
+          <PressableStyle url={routes.WRITING.path}>
             <Box
               flex={1}
               justifyContent="flex-start"
@@ -128,7 +134,7 @@ export default function Promoted() {
                 image={
                   <Image
                     source={{ uri: eggShopping.src }}
-                    alt="Highlights from WHOOP's Sleep Coaching."
+                    alt="A person shopping in a huge room of varied egg cartons confused about which carton of eggs to purchase."
                     resizeMode="cover"
                   />
                 }
@@ -139,7 +145,7 @@ export default function Promoted() {
               />
             </Box>
           </PressableStyle>
-          <PressableStyle url={routes.PRODUCTS.path}>
+          <PressableStyle url={routes.WRITING.path}>
             <Box
               flex={1}
               justifyContent="flex-start"
@@ -151,7 +157,7 @@ export default function Promoted() {
                 image={
                   <Image
                     source={{ uri: touchscreenCookbook.src }}
-                    alt="Highlights from WHOOP's Sleep Coaching."
+                    alt="How Michelin star chefs keep track of their recipes | gallery of beautiful homemade recipes | touchscreen cookbook."
                     resizeMode="cover"
                   />
                 }

@@ -29,6 +29,11 @@ const routes = {
     name: "comingsoon",
     title: "Coming Soon",
   },
+  PATRON: {
+    path: "/patron",
+    name: "patron",
+    title: "Patron",
+  },
   // COMMUNITY: {
   //   path: '/community',
   //   name: 'community',

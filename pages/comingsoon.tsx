@@ -1,16 +1,20 @@
 import React from "react";
 import { Box, Text } from "native-base";
+import PageLayout from "../components/PageLayout";
+import Head from "next/head";
 
-export default function ComingSoon() {
+export default function HomeScreen() {
   return (
-    <Box
-      flex={1}
-      alignItems={{ base: "flex-start", xl: "center" }}
-      _dark={{ bg: "gray.800" }}
-    >
-      <Box w={{ base: "100%", xl: "container.xl" }}>
-        <Text>COMING SOON</Text>
-      </Box>
-    </Box>
+    <>
+      <Head>
+        <title>Coming Soon | daviswhitehead.com</title>
+        <meta name="description" content="Coming soon." />
+      </Head>
+      <PageLayout>
+        <Box justifyContent="center" alignItems="center" h="100">
+          <Text>COMING SOON</Text>
+        </Box>
+      </PageLayout>
+    </>
   );
 }
