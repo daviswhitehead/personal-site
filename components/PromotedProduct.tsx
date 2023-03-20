@@ -31,16 +31,13 @@ export default function Promoted() {
   }, [cardHeight]);
 
   const cardWidth = "90%";
-  const carouselContainerWidth = useBreakpointValue({
-    base: "100%",
-    md: "500",
-  });
+  const carouselContainerWidth = "100%";
   const carouselContainerHeight = cardHeight + 40;
 
   return (
     <Stack
       space={{ base: "5", md: "10" }}
-      direction={{ base: "column-reverse", md: "row" }}
+      direction="column"
       px={{ base: "4", md: "8" }}
       py={{ base: "3", md: "5" }}
       alignItems="center"
