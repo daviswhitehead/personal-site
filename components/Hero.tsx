@@ -1,31 +1,22 @@
 import React from "react";
-import {
-  Box,
-  Stack,
-  Text,
-  VStack,
-  Image,
-  useBreakpointValue,
-} from "native-base";
-import headshot from "../public/images/headshot.png";
+import { Box, Stack, VStack, useBreakpointValue } from "native-base";
 import routes from "../lib/routes";
 import LinkWithIcon from "./LinkWithIcon";
+import H1 from "./typeography/H1";
+import H3 from "./typeography/H3";
+import { space } from "../styling/spacing";
+import Avatar from "./Avatar";
 
 export default function Hero() {
   return (
-    <Box px={{ base: "4", md: "8" }} py={{ base: "3", md: "5" }}>
+    <Box px={space.lg} py={space.md}>
       <Stack
-        space={{ base: "5", md: "10" }}
+        space={space.xl}
         direction={{ base: "column", md: "row" }}
         justifyContent={{ base: "center", md: "flex-start" }}
         alignItems="center"
       >
-        <Image
-          source={{ uri: headshot.src }}
-          alt="A photo of Davis Whitehead."
-          size={"150"}
-          resizeMode="contain"
-        />
+        <Avatar />
         <VStack
           flex={1}
           justifyContent={{ base: "center", md: "flex-start" }}
@@ -34,23 +25,11 @@ export default function Hero() {
             md: "flex-start",
           })}
         >
-          <Text
-            fontFamily="heading"
-            fontWeight="800"
-            fontSize="5xl"
-            textAlign={{ base: "center", md: "left" }}
-          >
-            Hi, I’m Davis.
-          </Text>
-          <Text
-            fontFamily="heading"
-            fontWeight="200"
-            fontSize="3xl"
-            textAlign={{ base: "center", md: "left" }}
-          >
-            I’m a product maker. I make products people love. I write about
-            living life well. And I enjoy collaborating with others.
-          </Text>
+          <H1>Hi, I’m Davis.</H1>
+          <H3>
+            I make products people love. I write about a well-lived life. And I
+            enjoy collaborating with others.
+          </H3>
           <LinkWithIcon url={routes.ABOUT.path} copy="Learn more about me" />
         </VStack>
       </Stack>

@@ -1,18 +1,28 @@
 import React from "react";
-import { Box, HStack, Link, Stack, Text } from "native-base";
+import { VStack, HStack, Link, Stack, Text } from "native-base";
 import HoverStyle from "./HoverStyle";
 import routes from "lib/routes";
 import socials from "lib/socials";
 import LinkWithIcon from "./LinkWithIcon";
+import { composeAction, trackEvent } from "../lib/gtag";
+import { categories, actions, objects } from "../lib/analyticsDefinitions";
+import { space } from "styling/spacing";
 
 export default function Footer() {
   return (
-    <Box px={{ base: "4", md: "8" }} py={{ base: "3", md: "5" }}>
+    <VStack
+      w="100%"
+      px={{ base: "4", md: "8" }}
+      py={{ base: "3", md: "5" }}
+      alignItems={{ base: "center", md: "flex-start" }}
+      space={space.xl}
+    >
       <Stack
+        w="100%"
         direction={{ base: "column-reverse", md: "row" }}
         justifyContent={{ base: "center", md: "space-between" }}
         alignItems="center"
-        space={{ base: 5, md: 5 }}
+        space={space.xl}
       >
         <Stack
           direction={{ base: "column", md: "row" }}
@@ -51,11 +61,25 @@ export default function Footer() {
                 target="_blank"
                 fontSize="sm"
                 icon={value.icon}
+                extraOnPress={() => {
+                  trackEvent({
+                    action: composeAction(actions.PRESS, objects.ICON),
+                    category: categories.SOCIAL,
+                    label: value.label,
+                  });
+                }}
               />
             );
           })}
         </HStack>
       </Stack>
-    </Box>
+      <LinkWithIcon
+        onPress={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        copy="Back to the top"
+        target="_blank"
+        fontSize="sm"
+        iconName="north"
+      />
+    </VStack>
   );
 }

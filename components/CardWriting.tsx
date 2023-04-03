@@ -1,5 +1,5 @@
-import React, { forwardRef } from "react";
-import { Stack, Text, AspectRatio, Box } from "native-base";
+import React from "react";
+import { Stack, Text, AspectRatio, Box, useBreakpointValue } from "native-base";
 import _ from "lodash";
 
 export interface Props {
@@ -7,45 +7,29 @@ export interface Props {
   title: string;
   description: string;
   publishDate: string;
-  readTime?: string;
-  size: "base" | "sm" | "md" | "lg" | "xl";
   url?: string;
   hoverColor?: string;
-  w: number | string;
 }
 
-const Card = (props: Props, ref: HTMLElement) => {
-  const imageSize = {
-    base: "100",
-    sm: "125",
-    md: "150",
-    lg: "175",
-    xl: "200",
-  };
+export default function Card(props: Props) {
+  const imageSize = "100";
+  const showDescription = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
 
   return (
     <Stack
       {...props}
-      direction={{ base: "row", md: "row" }}
-      justifyContent={{ base: "flex-start", md: "flex-start" }}
-      alignItems="flex-start"
-      // @ts-expect-error can't figure out this ref thing
-      ref={ref}
+      direction={"row"}
+      justifyContent={"flex-start"}
+      alignItems={"flex-start"}
       rounded="xl"
       overflow="hidden"
-      borderWidth={1}
-      shadow={4}
-      _dark={{ borderColor: "gray.500" }}
-      w={props.w}
+      w={"100%"}
     >
-      <Box
-        m="2"
-        rounded="xl"
-        overflow="hidden"
-        w={imageSize[props.size]}
-        h={imageSize[props.size]}
-      >
-        <AspectRatio w={imageSize[props.size]} ratio={1 / 1}>
+      <Box m="2" rounded="xl" overflow="hidden" w={imageSize} h={imageSize}>
+        <AspectRatio w={imageSize} ratio={1 / 1}>
           {props.image}
         </AspectRatio>
       </Box>
@@ -62,12 +46,14 @@ const Card = (props: Props, ref: HTMLElement) => {
               separator: " ",
             })}
           </Text>
-          <Text fontFamily="body" fontWeight="300" fontSize="sm">
-            {_.truncate(props.description, {
-              length: 300,
-              separator: " ",
-            })}
-          </Text>
+          {showDescription && (
+            <Text fontFamily="body" fontWeight="300" fontSize="sm">
+              {_.truncate(props.description, {
+                length: 300,
+                separator: " ",
+              })}
+            </Text>
+          )}
         </Stack>
         <Stack space={0}>
           <Text
@@ -84,10 +70,4 @@ const Card = (props: Props, ref: HTMLElement) => {
       </Stack>
     </Stack>
   );
-};
-
-// @ts-expect-error can't figure out this ref thing
-const forwardedRefCard = forwardRef(Card);
-
-// Exporting the wrapped component
-export default forwardedRefCard;
+}

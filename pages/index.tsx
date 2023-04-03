@@ -3,7 +3,6 @@ import PageLayout from "../components/PageLayout";
 import Head from "next/head";
 import Hero from "../components/Hero";
 import PromotedLayout from "../components/PromotedLayout";
-import Footer from "../components/Footer";
 
 export default function HomeScreen() {
   return (
@@ -14,7 +13,6 @@ export default function HomeScreen() {
       <PageLayout>
         <Hero />
         <PromotedLayout />
-        <Footer />
       </PageLayout>
     </>
   );

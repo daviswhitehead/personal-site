@@ -34,6 +34,11 @@ const routes = {
     name: "patron",
     title: "Patron",
   },
+  SOCIALS: {
+    path: "/socials",
+    name: "socials",
+    title: "Socials",
+  },
   // COMMUNITY: {
   //   path: '/community',
   //   name: 'community',
