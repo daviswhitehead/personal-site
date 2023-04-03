@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default function Carousel({ children }: Props) {
-  const timeout = 7;
+  const timeout = 10;
   const counterInit = 0.5;
 
   const swiperRef = useRef(null);
@@ -35,7 +35,7 @@ export default function Carousel({ children }: Props) {
     <Swiper
       ref={swiperRef}
       loop
-      timeout={timeout}
+      // timeout={timeout}
       onIndexChanged={() => {
         setCounter(counterInit);
       }}

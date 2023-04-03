@@ -1,5 +1,12 @@
 import React, { forwardRef } from "react";
-import { Stack, Text, AspectRatio, HStack, VStack } from "native-base";
+import {
+  Stack,
+  Text,
+  AspectRatio,
+  HStack,
+  VStack,
+  useBreakpointValue,
+} from "native-base";
 import _ from "lodash";
 
 export interface Props {
@@ -13,6 +20,10 @@ export interface Props {
 }
 
 const Card = (props: Props, ref: HTMLElement) => {
+  const showDescription = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
   return (
     <VStack
       {...props}
@@ -48,15 +59,17 @@ const Card = (props: Props, ref: HTMLElement) => {
             })}
           </Text>
         </Stack>
-        <Text fontFamily="body" fontWeight="300" fontSize="sm">
-          {_.truncate(props.description, {
-            length: 200,
-            separator: " ",
-          })}
-        </Text>
+        {showDescription && (
+          <Text fontFamily="body" fontWeight="300" fontSize="sm">
+            {_.truncate(props.description, {
+              length: 200,
+              separator: " ",
+            })}
+          </Text>
+        )}
         <HStack alignItems="center" space={4} justifyContent="space-between">
           <HStack alignItems="center">
-            <Text
+            {/* <Text
               _dark={{
                 color: "warmGray.200",
               }}
@@ -68,7 +81,7 @@ const Card = (props: Props, ref: HTMLElement) => {
                 length: 50,
                 separator: " ",
               })}
-            </Text>
+            </Text> */}
           </HStack>
         </HStack>
       </Stack>

@@ -47,6 +47,7 @@ export default function Footer() {
               <LinkWithIcon
                 key={key}
                 url={value.link}
+                // copy={value.label}
                 copy=""
                 target="_blank"
                 fontSize="sm"
