@@ -23,15 +23,20 @@ const social = {
     label: "Github",
     icon: <Icon size="5" name="github" as={MaterialCommunityIcons} />,
   },
-  twitter: {
-    link: "https://twitter.com/dwhiteheadtime",
-    label: "Twitter",
-    icon: <Icon size="5" name="twitter" as={MaterialCommunityIcons} />,
-  },
   goodreads: {
     link: "https://www.goodreads.com/daviswhitehead",
     label: "Goodreads",
     icon: <Icon size="5" name="goodreads" as={MaterialCommunityIcons} />,
+  },
+  youtube: {
+    link: "https://www.youtube.com/@daviswhitehead",
+    label: "Youtube",
+    icon: <Icon size="5" name="youtube" as={MaterialCommunityIcons} />,
+  },
+  twitter: {
+    link: "https://twitter.com/dwhiteheadtime",
+    label: "Twitter",
+    icon: <Icon size="5" name="twitter" as={MaterialCommunityIcons} />,
   },
   instagram: {
     link: "https://www.instagram.com/whitehead.davis/",
