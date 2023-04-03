@@ -1,8 +1,8 @@
 import React from "react";
 import { useBreakpointValue, VStack } from "native-base";
 import LinkWithIcon from "./LinkWithIcon";
-// import { composeAction, trackEvent } from "../lib/gtag";
-// import { categories, actions, objects } from "../lib/analyticsDefinitions";
+import { composeAction, trackEvent } from "../lib/gtag";
+import { categories, actions, objects } from "../lib/analyticsDefinitions";
 import socials from "lib/socials";
 import { space } from "styling/spacing";
 
@@ -15,8 +15,6 @@ export default function SocialStack() {
   return (
     <VStack m={space.xl2} alignItems="center" space={5}>
       {Object.entries(socials).map(([key, value]) => {
-        console.log("value", value);
-        console.log("value.link", value.link);
         return (
           <LinkWithIcon
             key={key}
@@ -31,6 +29,13 @@ export default function SocialStack() {
               w: buttonWidth,
               h: buttonHeight,
               borderRadius: "50",
+            }}
+            extraOnPress={() => {
+              trackEvent({
+                action: composeAction(actions.PRESS, objects.ICON),
+                category: categories.SOCIAL,
+                label: value.label,
+              });
             }}
           />
         );

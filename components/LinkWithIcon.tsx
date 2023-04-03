@@ -15,22 +15,25 @@ interface Props {
   onPress?: () => void;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   pressableStyle?: any;
+  extraOnPress?: () => void;
 }
 
 export default function LinkWithIcon(props: Props) {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  const extraOnPress = props.extraOnPress ? props.extraOnPress : () => {};
   const handlePress = (url: string) => {
+    extraOnPress();
     Linking.canOpenURL(url).then(() => {
       return Linking.openURL(url, props.target ? props.target : "_self");
     });
   };
+
   const realOnPress = props.onPress
     ? props.onPress
     : () => props.url && handlePress(props.url);
 
-  console.log("props", props);
-
   return (
-    <Pressable onPress={realOnPress}>
+    <Pressable onPress={realOnPress} {...props.pressableStyle}>
       {({ isHovered }) => {
         const color = isHovered ? "orange.300" : "white";
         return (

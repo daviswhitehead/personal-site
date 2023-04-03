@@ -16,6 +16,7 @@ export enum categories {
   WRITING = "writing",
   COLLABORATE = "collaborate",
   SUBSCRIBE = "subscribe",
+  SOCIAL = "social",
   HEADER = "header",
 }
 
@@ -31,7 +32,14 @@ export enum objects {
   // always lowercase, present-tense, after the category and action. optional
   SUBSCRIBE_LINK = "subscribe link",
   SUBSCRIBE_MODAL = "subscribe modal",
+  ICON = "icon",
 }
+
+export const label = (label: string) => {
+  {
+    label: label;
+  }
+};
 
 // RESOURCES
 // About Events: https://support.google.com/analytics/answer/1033068
