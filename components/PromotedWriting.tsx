@@ -80,13 +80,13 @@ export default function Promoted() {
         </Stack>
       </Box>
       <Body py={space.md}>
-        I write thoughts and ideas loosely related to living a well-lived life.
-        Some posts are product pitches or critiques, others are about
-        experiments in living, and some are deeply personal. My goals in writing
-        are to build an engaged community to create products for, to think
-        critically, and to live transparently. I’d love to hear your feedback.
+        I write reflections on what it means to live a well-lived life. Some
+        posts are product pitches, others are about experiments in living, and
+        some are deeply personal. My goals in writing are to build an engaged
+        community to create products for, to think critically, and to live
+        transparently. I’d love to hear your feedback.
       </Body>
-      <LinkWithIcon url={routes.WRITING.path} copy="Explore more writing" />
+      <LinkWithIcon url={routes.WRITING.path} copy="Explore my writing" />
       <LinkWithIcon
         onPress={() => {
           trackEvent({

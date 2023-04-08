@@ -27,7 +27,7 @@ export default function Hero() {
         >
           <H1>Hi, I’m Davis.</H1>
           <H3>
-            I make products people love. I write about a well-lived life. And I
+            I make products people love. I write reflections on life. And I
             enjoy collaborating with others.
           </H3>
           <LinkWithIcon url={routes.ABOUT.path} copy="Learn more about me" />

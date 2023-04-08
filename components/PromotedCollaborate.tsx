@@ -2,6 +2,7 @@ import React from "react";
 import { Stack, Text, VStack, useBreakpointValue } from "native-base";
 import LinkWithIcon from "./LinkWithIcon";
 import socials from "lib/socials";
+import routes from "lib/routes";
 // import helpMeBuildProduct from "../public/images/helpMeBuildProduct.png";
 // import shareYourFeedbackWithMe from "../public/images/shareYourFeedbackWithMe.png";
 // import howCanIHelpYou from "../public/images/howCanIHelpYou.png";
@@ -41,18 +42,16 @@ export default function Promoted() {
           Collaboration is integral to creating a product people love and it’s
           just plain fun. I’m the type of person who always has a short list of
           products to build and topics to write about. I’m always open to
-          receiving help and also helping others. Consider this an open
-          invitation to connect with me!
+          receiving help and helping others. Consider this an open invitation to
+          connect with me!
         </Text>
         <LinkWithIcon
-          url={socials.email.link}
-          copy="Send me a message"
-          target="_blank"
-          fontSize="md"
+          url={routes.COLLABORATE.path}
+          copy="Check out opportunities to collaborate"
         />
         <LinkWithIcon
-          url={socials.calendar.link}
-          copy="Schedule time with me"
+          url={socials.email.link}
+          copy="Get in touch"
           target="_blank"
           fontSize="md"
         />
