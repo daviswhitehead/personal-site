@@ -86,17 +86,17 @@ export default function Promoted() {
         community to create products for, to think critically, and to live
         transparently. I’d love to hear your feedback.
       </Body>
-      <LinkWithIcon url={routes.WRITING.path} copy="Explore my writing" />
+      <LinkWithIcon url={routes.WRITING.path} copy="Explore more writing" />
       <LinkWithIcon
         onPress={() => {
           trackEvent({
             action: composeAction(actions.PRESS, objects.SUBSCRIBE_LINK),
             category: categories.HOME,
-            label: "Subscribe to my newsletter",
+            label: "Subscribe to stay up to date",
           });
           setModalVisible(!modalVisible);
         }}
-        copy="Subscribe to my newsletter"
+        copy="Subscribe to stay up to date"
       />
       <SubscribeModal
         modalVisible={modalVisible}

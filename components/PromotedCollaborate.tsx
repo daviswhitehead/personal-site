@@ -1,8 +1,11 @@
 import React from "react";
-import { Stack, Text, VStack, useBreakpointValue } from "native-base";
+import { Stack, VStack, useBreakpointValue } from "native-base";
 import LinkWithIcon from "./LinkWithIcon";
 import socials from "lib/socials";
 import routes from "lib/routes";
+import H2 from "./typeography/H2";
+import { space } from "styling/spacing";
+import Body from "./typeography/Body";
 // import helpMeBuildProduct from "../public/images/helpMeBuildProduct.png";
 // import shareYourFeedbackWithMe from "../public/images/shareYourFeedbackWithMe.png";
 // import howCanIHelpYou from "../public/images/howCanIHelpYou.png";
@@ -10,10 +13,9 @@ import routes from "lib/routes";
 export default function Promoted() {
   return (
     <Stack
-      space={{ base: "5", md: "10" }}
+      px={space.lg}
+      py={space.md}
       direction={{ base: "column-reverse", md: "row" }}
-      px={{ base: "4", md: "8" }}
-      py={{ base: "3", md: "5" }}
       alignItems="center"
     >
       <VStack
@@ -23,28 +25,14 @@ export default function Promoted() {
           md: "flex-start",
         })}
       >
-        <Text
-          fontFamily="heading"
-          fontWeight="200"
-          fontSize="3xl"
-          textAlign={{ base: "center", md: "left" }}
-          py={{ base: "3", md: "6" }}
-        >
-          Collaborating with others
-        </Text>
-        <Text
-          fontFamily="body"
-          fontWeight="300"
-          fontSize="lg"
-          textAlign={{ base: "center", md: "left" }}
-          py={{ base: "2", md: "4" }}
-        >
+        <H2>Collaborating with others</H2>
+        <Body pt={space.sm} pb={space.md}>
           Collaboration is integral to creating a product people love and it’s
           just plain fun. I’m the type of person who always has a short list of
           products to build and topics to write about. I’m always open to
           receiving help and helping others. Consider this an open invitation to
           connect with me!
-        </Text>
+        </Body>
         <LinkWithIcon
           url={routes.COLLABORATE.path}
           copy="Check out opportunities to collaborate"

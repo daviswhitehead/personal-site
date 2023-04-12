@@ -1,11 +1,22 @@
-import React, { useEffect } from "react";
-import { FormControl, Input, Modal, Stack, Text } from "native-base";
+import React, { useEffect, useState } from "react";
+import {
+  FormControl,
+  Input,
+  Modal,
+  Stack,
+  Text,
+  Button,
+  VStack,
+  // useToast,
+} from "native-base";
 import { trackEvent, composeAction } from "../lib/gtag";
 import { categories, actions, objects } from "../lib/analyticsDefinitions";
 import Avatar from "./Avatar";
 // import H3 from "./typeography/H3";
 import { space } from "../styling/spacing";
 import LinkWithIcon from "./LinkWithIcon";
+
+// https://github.com/anirudhvsp/hack-with-nativebase-tradebook/blob/f3eb8ed69f0f3c0a450bfd49257742f1f01395dd/page/Login.jsx
 
 interface Props {
   modalVisible: boolean;
@@ -22,61 +33,145 @@ export default function SubscribeModal(props: Props) {
     }
   }, [props.modalVisible]);
 
+  const [email, setEmail] = useState("");
+  // const [loading, setLoading] = useState(false);
+
+  // const toast = useToast();
+
+  const handleSubmit = async () => {
+    // setLoading(true);
+    // const { session, error } = await supabase.auth.signUp({
+    //   email: email,
+    //   password: email.split("@")[0],
+    // });
+    // if (!error || error.message === "User already registered") {
+    //   console.log(user, session, error);
+    //   await supabase.auth.signIn({
+    //     email,
+    //   });
+    //   toast.show({
+    //     title: "Login Link sent to email",
+    //     placement: "bottom",
+    //   });
+    //   setLoading(false);
+    // } else {
+    //   toast.show({
+    //     title: error.message,
+    //     placement: "bottom",
+    //   });
+    //   setLoading(false);
+    // }
+    // console.log(supabase.auth.currentUser);
+  };
+
+  // See if you can get the window width and height and use that to set the content height and width
+
   return (
     <Modal
       isOpen={props.modalVisible}
       onClose={() => props.setModalVisible(false)}
       avoidKeyboard
+      // size="full"
       size="lg"
       _backdrop={{
         _dark: {
-          // bg: "orange.400",
           bg: "black",
-          opacity: 0.8,
+          opacity: 0.9,
         },
-        bg: "warmGray.50",
       }}
     >
-      <Modal.Content position="sticky" marginTop={0} top="375" bottom="375">
-        <Modal.CloseButton />
+      <Modal.Content position="sticky" marginTop={0} top="235" bottom="235">
+        <Modal.CloseButton
+          _hover={{
+            bg: "unstyled",
+            _icon: {
+              color: "orange.300",
+            },
+          }}
+          _pressed={{
+            bg: "unstyled",
+            _icon: {
+              color: "orange.400",
+            },
+          }}
+        />
         <Modal.Body>
           <Stack
             direction="column"
             alignItems="center"
-            space={0}
-            py={space.lg}
-            px={space.lg}
+            space={space.md}
+            py={space.xl}
+            px={space.xl}
           >
-            <Avatar />
-            <Text
-              fontFamily="heading"
-              // fontWeight="200"
-              fontSize="md"
-              textAlign="center"
-            >
-              Subscribe to my newsletter
-            </Text>
-            <Text
-              fontFamily="body"
-              fontWeight="200"
-              fontSize="sm"
-              textAlign="center"
-            >
-              Reflections on what it means to live a well-lived life -- product
-              pitches, life experiments, and personal vignettes.
-            </Text>
-            <FormControl mt="3">
-              <FormControl.Label>Email</FormControl.Label>
-              <Input />
-            </FormControl>
-            <LinkWithIcon
-              onPress={() => {
-                props.setModalVisible(false);
-              }}
-              copy="No thanks"
-              target="_blank"
-              fontSize="sm"
-            />
+            <Avatar m={space.xl} />
+            <VStack>
+              <Text
+                fontFamily="heading"
+                fontWeight="500"
+                fontSize="md"
+                textAlign="center"
+              >
+                Subscribe to stay up to date
+              </Text>
+              <Text
+                fontFamily="body"
+                fontWeight="200"
+                fontSize="sm"
+                textAlign="center"
+              >
+                Reflections on what it means to live a well-lived life --
+                product pitches, life experiments, and personal vignettes.
+              </Text>
+            </VStack>
+            <VStack space={space.sm}>
+              <FormControl mt="3" p={space.sm} borderColor="orange.400">
+                <Input
+                  placeholder="Type your email..."
+                  type="text"
+                  _hover={{
+                    borderColor: "orange.300",
+                  }}
+                  _focus={{
+                    borderColor: "orange.300",
+                    bg: "unstyled",
+                    borderWidth: "1",
+                  }}
+                  focusOutlineColor="orange.300"
+                  borderColor="orange.300"
+                  value={email}
+                  onChangeText={(e) => {
+                    setEmail(e);
+                  }}
+                  InputRightElement={
+                    <Button
+                      rounded="none"
+                      w="1/6"
+                      h="100%"
+                      p={0}
+                      px={10}
+                      bg="orange.300"
+                      _hover={{
+                        bg: "orange.300",
+                      }}
+                      _pressed={{
+                        bg: "orange.400",
+                      }}
+                      onPress={handleSubmit}
+                    >
+                      <Text color={"black"}>Subscribe</Text>
+                    </Button>
+                  }
+                />
+              </FormControl>
+              <LinkWithIcon
+                onPress={() => {
+                  props.setModalVisible(false);
+                }}
+                copy="No thanks"
+                target="_blank"
+                fontSize="sm"
+              />
+            </VStack>
           </Stack>
         </Modal.Body>
       </Modal.Content>
