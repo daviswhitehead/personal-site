@@ -17,6 +17,9 @@
     "lodash": "^4.17.21",
     "native-base": "3.4.22",
     "next": "12.0.4",
+    "notion-client": "^6.16.0",
+    "notion-types": "^6.16.0",
+    "notion-utils": "^6.16.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-native": "^0.67.3",
@@ -25,7 +28,8 @@
     "react-native-vector-icons": "^9.2.0",
     "react-native-web": "^0.18.10",
     "react-native-web-linear-gradient": "^1.1.2",
-    "react-native-web-swiper": "^2.2.4"
+    "react-native-web-swiper": "^2.2.4",
+    "react-notion-x": "^6.16.0"
   },
   "devDependencies": {
     "@native-base/next-adapter": "^1.1.9",
