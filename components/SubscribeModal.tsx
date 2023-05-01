@@ -15,6 +15,8 @@ import Avatar from "./Avatar";
 // import H3 from "./typeography/H3";
 import { space } from "../styling/spacing";
 import LinkWithIcon from "./LinkWithIcon";
+import { getAuth, sendSignInLinkToEmail } from "firebase/auth";
+import { actionCodeSettings } from "../lib/firebaseConfig";
 
 // https://github.com/anirudhvsp/hack-with-nativebase-tradebook/blob/f3eb8ed69f0f3c0a450bfd49257742f1f01395dd/page/Login.jsx
 
@@ -34,11 +36,34 @@ export default function SubscribeModal(props: Props) {
   }, [props.modalVisible]);
 
   const [email, setEmail] = useState("");
+  // console.log("setEmail", setEmail);
+
   // const [loading, setLoading] = useState(false);
 
   // const toast = useToast();
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
+    console.log("handleSubmit");
+    console.log("email", email);
+
+    const auth = getAuth();
+    sendSignInLinkToEmail(auth, email, actionCodeSettings)
+      .then(() => {
+        // The link was successfully sent. Inform the user.
+        // Save the email locally so you don't need to ask the user for it again
+        // if they open the link on the same device.
+        window.localStorage.setItem("emailForSignIn", email);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        console.log("errorCode", errorCode);
+        console.log("errorMessage", errorMessage);
+        // ...
+      });
+
     // setLoading(true);
     // const { session, error } = await supabase.auth.signUp({
     //   email: email,
@@ -80,6 +105,7 @@ export default function SubscribeModal(props: Props) {
         },
       }}
     >
+      {/* the line below needs to be dynamic somehow */}
       <Modal.Content position="sticky" marginTop={0} top="235" bottom="235">
         <Modal.CloseButton
           _hover={{
@@ -111,7 +137,7 @@ export default function SubscribeModal(props: Props) {
                 fontSize="md"
                 textAlign="center"
               >
-                Subscribe to stay up to date
+                Stay up to date with Davis
               </Text>
               <Text
                 fontFamily="body"
@@ -119,8 +145,8 @@ export default function SubscribeModal(props: Props) {
                 fontSize="sm"
                 textAlign="center"
               >
-                Reflections on what it means to live a well-lived life --
-                product pitches, life experiments, and personal vignettes.
+                Reflections on living intentionally -- product pitches, life
+                experiments, and personal vignettes.
               </Text>
             </VStack>
             <VStack space={space.sm}>
@@ -140,6 +166,8 @@ export default function SubscribeModal(props: Props) {
                   borderColor="orange.300"
                   value={email}
                   onChangeText={(e) => {
+                    // console.log("e", e);
+
                     setEmail(e);
                   }}
                   InputRightElement={
@@ -157,6 +185,7 @@ export default function SubscribeModal(props: Props) {
                         bg: "orange.400",
                       }}
                       onPress={handleSubmit}
+                      // onPress={() => console.log("pressed")}
                     >
                       <Text color={"black"}>Subscribe</Text>
                     </Button>

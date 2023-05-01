@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Text, useBreakpointValue } from "native-base";
+import { Box, Text, useBreakpointValue, Input } from "native-base";
 import Header from "../components/Header";
 import SubscribeModal from "../components/SubscribeModal";
 import LinkWithIcon from "components/LinkWithIcon";
@@ -8,6 +8,13 @@ export default function HomeScreen() {
   const [modalVisible, setModalVisible] = useState(false);
 
   // console.log(window.scrollY);
+  const [email, setEmail] = useState("");
+  // console.log("email", email);
+
+  const [value, setValue] = useState("");
+  // console.log("value", value);
+
+  const handleChange = (text: string) => setValue(text);
 
   return (
     <>
@@ -37,6 +44,22 @@ export default function HomeScreen() {
             setModalVisible={setModalVisible}
           />
           <Text>Scratch</Text>
+          <Input
+            placeholder="Type your email..."
+            type="text"
+            value={email}
+            onChangeText={(e) => {
+              console.log("e", e);
+
+              setEmail(e);
+            }}
+          />
+          <Input
+            value={value}
+            w="100%"
+            onChangeText={handleChange}
+            placeholder="Value Controlled Input"
+          />
           <LinkWithIcon
             onPress={() => {
               setModalVisible(!modalVisible);
