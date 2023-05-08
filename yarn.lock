@@ -3107,6 +3107,11 @@
     "@types/node" "*"
     "@types/responselike" "^1.0.0"
 
+"@types/eslint-config-prettier@^6.11.0":
+  version "6.11.0"
+  resolved "https://registry.yarnpkg.com/@types/eslint-config-prettier/-/eslint-config-prettier-6.11.0.tgz#5e944e94240df9c1ba755c3b1ebc3879d96ab991"
+  integrity sha512-UBuZMZVog9c9jXvArbYtWH570sRWNaU6kEnUAHsHb/+zAufzPT4I+gMkUR2dVPWlqiceoRU1thjUVdGrAWVpCA==
+
 "@types/eslint@7.29.0":
   version "7.29.0"
   resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-7.29.0.tgz#e56ddc8e542815272720bb0b4ccc2aff9c3e1c78"
@@ -3185,6 +3190,11 @@
   integrity sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==
   dependencies:
     "@types/node" "*"
+
+"@types/lint-staged@^13.2.0":
+  version "13.2.0"
+  resolved "https://registry.yarnpkg.com/@types/lint-staged/-/lint-staged-13.2.0.tgz#d2fca51e4fec0f4088067acaa2d4843244b593dc"
+  integrity sha512-rYHDtOV4BHb1hRH5dA7P+jarU/YFmQ9CGgwYPZNVRoxhrsrm2exEETeIEB+EmBk2AXIKAaK9JDzjpNCkceDGFQ==
 
 "@types/lodash.has@^4.5.6":
   version "4.5.7"

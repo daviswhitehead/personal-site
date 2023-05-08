@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Text, useBreakpointValue, Input } from "native-base";
 import Header from "../components/Header";
-import SubscribeModal from "../components/SubscribeModal";
+import SubscribeModal from "../components/subscribe/SubscribeModal";
 import LinkWithIcon from "components/LinkWithIcon";
 
 export default function HomeScreen() {

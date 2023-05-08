@@ -35,6 +35,8 @@
   "devDependencies": {
     "@native-base/next-adapter": "^1.1.9",
     "@types/eslint": "7.29.0",
+    "@types/eslint-config-prettier": "^6.11.0",
+    "@types/lint-staged": "^13.2.0",
     "@types/lodash": "^4.14.191",
     "@types/node": "16.11.11",
     "@types/prettier": "^2.7.2",

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, useBreakpointValue } from "native-base";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import SubscribeModal from "../components/SubscribeModal";
+import SubscribeModal from "./subscribe/SubscribeModal";
 
 interface Props {
   children: React.ReactNode;

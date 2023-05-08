@@ -9,13 +9,14 @@ import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyDjFrHa1mUNe--gsBntGv7mSM4qJ1IBtrs",
-  authDomain: "daviswhitehead-d876f.firebaseapp.com",
-  projectId: "daviswhitehead-d876f",
-  storageBucket: "daviswhitehead-d876f.appspot.com",
-  messagingSenderId: "188268351581",
-  appId: "1:188268351581:web:6a4aaa4b1e091cce46bdb4",
-  measurementId: "G-4GTZVBD2XF",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_STORAGE_BUCKET,
+  messagingSenderId:
+    process.env.NEXT_PUBLIC_FIREBASE_CONFIG_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_CONFIG_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
@@ -26,7 +27,7 @@ export const analytics = getAnalytics(app);
 export const actionCodeSettings = {
   // URL you want to redirect back to. The domain (www.example.com) for this
   // URL must be in the authorized domains list in the Firebase Console.
-  url: "http://localhost:3001/auth/confirmsubscription",
+  url: "http://localhost:3000/auth/confirmsubscription",
   // This must be true.
   handleCodeInApp: true,
 };

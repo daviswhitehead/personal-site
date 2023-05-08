@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Image, Stack, useBreakpointValue, Box } from "native-base";
 import LinkWithIcon from "./LinkWithIcon";
-import SubscribeModal from "./SubscribeModal";
+import SubscribeModal from "./subscribe/SubscribeModal";
 import routes from "lib/routes";
 import CardWriting from "./CardWriting";
 import digitalBookLibrary from "../public/images/digitalBookLibrary.png";
