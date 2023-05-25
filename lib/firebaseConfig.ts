@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics, isSupported } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -22,12 +22,14 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const analytics = getAnalytics(app);
+export const analytics = isSupported().then((yes: boolean) =>
+  yes ? getAnalytics(app) : null
+);
 
 export const actionCodeSettings = {
   // URL you want to redirect back to. The domain (www.example.com) for this
   // URL must be in the authorized domains list in the Firebase Console.
-  url: "http://localhost:3000/auth/confirmsubscription",
+  url: `${process.env.NEXT_PUBLIC_URL}/auth/confirmsubscription`,
   // This must be true.
   handleCodeInApp: true,
 };
