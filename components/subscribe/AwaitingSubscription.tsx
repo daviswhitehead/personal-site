@@ -3,6 +3,9 @@ import { Input, Button, Text, Stack, VStack, FormControl } from "native-base";
 import Avatar from "components/Avatar";
 import LinkWithIcon from "components/LinkWithIcon";
 import { space } from "styling/spacing";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 type AwaitingSubscriptionProps = {
   onSubmit: () => void;
@@ -17,12 +20,32 @@ const AwaitingSubscription = ({
   onCancel,
   email,
 }: AwaitingSubscriptionProps) => {
-  const handleTextChange = (value: string) => {
-    onTextChange(value);
+  // email validation
+  const schema = yup.object().shape({
+    email: yup
+      .string()
+      .email("Please enter a valid email address")
+      .required("Your email is required")
+      .default(""),
+  });
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    // @ts-expect-error can't figure out this TS2345 error
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmitHandler = () => {
+    onSubmit();
+    reset();
   };
 
-  const handleSubmit = () => {
-    onSubmit();
+  const handleTextChange = (value: string) => {
+    onTextChange(value);
   };
 
   return (
@@ -54,44 +77,63 @@ const AwaitingSubscription = ({
         </Text>
       </VStack>
       <VStack space={space.sm}>
-        <FormControl mt="3" p={space.sm} borderColor="orange.400">
-          <Input
-            placeholder="Type your email..."
-            type="text"
-            _hover={{
-              borderColor: "orange.300",
+        <FormControl
+          isRequired
+          isInvalid={"email" in errors}
+          mt="3"
+          p={space.sm}
+          borderColor="orange.400"
+        >
+          <Controller
+            name="email"
+            control={control}
+            render={({ field: { ref, ...field } }) => {
+              return (
+                <Input
+                  ref={ref}
+                  {...field}
+                  placeholder="Type your email..."
+                  type="text"
+                  _hover={{
+                    borderColor: "orange.300",
+                  }}
+                  _focus={{
+                    borderColor: "orange.300",
+                    bg: "unstyled",
+                    borderWidth: "1",
+                  }}
+                  focusOutlineColor="orange.300"
+                  borderColor="orange.300"
+                  value={email}
+                  onChangeText={(e) => {
+                    handleTextChange(e);
+                  }}
+                  InputRightElement={
+                    <Button
+                      rounded="none"
+                      w="1/6"
+                      h="100%"
+                      p={0}
+                      px={10}
+                      bg="orange.300"
+                      _hover={{
+                        bg: "orange.300",
+                      }}
+                      _pressed={{
+                        bg: "orange.400",
+                      }}
+                      onPress={handleSubmit(onSubmitHandler)}
+                    >
+                      <Text color={"black"}>Subscribe</Text>
+                    </Button>
+                  }
+                />
+              );
             }}
-            _focus={{
-              borderColor: "orange.300",
-              bg: "unstyled",
-              borderWidth: "1",
-            }}
-            focusOutlineColor="orange.300"
-            borderColor="orange.300"
-            value={email}
-            onChangeText={(e) => {
-              handleTextChange(e);
-            }}
-            InputRightElement={
-              <Button
-                rounded="none"
-                w="1/6"
-                h="100%"
-                p={0}
-                px={10}
-                bg="orange.300"
-                _hover={{
-                  bg: "orange.300",
-                }}
-                _pressed={{
-                  bg: "orange.400",
-                }}
-                onPress={handleSubmit}
-              >
-                <Text color={"black"}>Subscribe</Text>
-              </Button>
-            }
           />
+          <FormControl.ErrorMessage>
+            {errors.email?.message}
+          </FormControl.ErrorMessage>
         </FormControl>
         <LinkWithIcon
           onPress={onCancel}

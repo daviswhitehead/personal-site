@@ -35,8 +35,6 @@ export default function SubscribeModal(props: Props) {
       setWindowHeight(window.innerHeight);
     }
   }, [props.modalVisible]);
-  console.log("scrollPosition", scrollPosition);
-  console.log("windowHeight", windowHeight);
 
   // analytics
   useEffect(() => {
@@ -55,7 +53,7 @@ export default function SubscribeModal(props: Props) {
   const [subscriptionState, setsubscriptionState] = useState<SubscriptionState>(
     "AWAITING_SUBCRIPTION"
   );
-  console.log("subscriptionState", subscriptionState);
+  // console.log("subscriptionState", subscriptionState);
 
   const onSubmit = () => {
     setsubscriptionState("SENDING_SUBSCRIPTION_REQUEST");
