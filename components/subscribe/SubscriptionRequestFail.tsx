@@ -5,12 +5,12 @@ import socials from "lib/socials";
 import LinkWithIcon from "components/LinkWithIcon";
 
 type SubscriptionRequestFailProps = {
-  onTryAgain: () => void;
+  onRetry: () => void;
   errorCode: string;
 };
 
 const SubscriptionRequestFail = ({
-  onTryAgain,
+  onRetry,
   errorCode,
 }: SubscriptionRequestFailProps) => {
   return (
@@ -51,7 +51,7 @@ const SubscriptionRequestFail = ({
           _pressed={{
             bg: "orange.400",
           }}
-          onPress={onTryAgain}
+          onPress={onRetry}
         >
           <Text color={"black"}>Retry</Text>
         </Button>
@@ -63,7 +63,7 @@ const SubscriptionRequestFail = ({
             errorCode +
             "."
           }
-          copy="Get help from Davis"
+          copy="Get help"
           target="_blank"
           fontSize="sm"
         />

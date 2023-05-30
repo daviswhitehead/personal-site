@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Spinner, Text, Stack } from "native-base";
 import { space } from "styling/spacing";
 
-const SendingSubscriptionRequest = () => {
+type SendingSubscriptionRequestProps = {
+  onTimeout: () => void;
+};
+
+const SendingSubscriptionRequest = ({
+  onTimeout,
+}: SendingSubscriptionRequestProps) => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onTimeout();
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, [onTimeout]);
+
   return (
     <Stack
       direction="column"

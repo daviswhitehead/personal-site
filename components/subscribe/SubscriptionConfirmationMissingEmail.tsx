@@ -1,23 +1,20 @@
 import React from "react";
 import { Text, Stack, VStack } from "native-base";
 import Avatar from "components/Avatar";
-import LinkWithIcon from "components/LinkWithIcon";
 import { space } from "styling/spacing";
 import EmailInput from "components/forms/EmailInput";
 
-type AwaitingSubscriptionProps = {
+type SubscriptionConfirmationMissingEmailProps = {
   onSubmit: () => void;
   onTextChange: (text: string) => void;
-  onCancel: () => void;
   email: string;
 };
 
-const AwaitingSubscription = ({
+const SubscriptionConfirmationMissingEmail = ({
   onSubmit,
   onTextChange,
-  onCancel,
   email,
-}: AwaitingSubscriptionProps) => {
+}: SubscriptionConfirmationMissingEmailProps) => {
   return (
     <Stack
       direction="column"
@@ -34,7 +31,7 @@ const AwaitingSubscription = ({
           fontSize="md"
           textAlign="center"
         >
-          Stay up to date with Davis
+          Oops, we lost your email
         </Text>
         <Text
           fontFamily="body"
@@ -42,8 +39,7 @@ const AwaitingSubscription = ({
           fontSize="sm"
           textAlign="center"
         >
-          Reflections on living intentionally -- product pitches, life
-          experiments, and personal vignettes.
+          Please enter your email address to subscribe.
         </Text>
       </VStack>
       <VStack space={space.sm}>
@@ -52,15 +48,9 @@ const AwaitingSubscription = ({
           onTextChange={onTextChange}
           email={email}
         />
-        <LinkWithIcon
-          onPress={onCancel}
-          copy="No thanks"
-          target="_blank"
-          fontSize="sm"
-        />
       </VStack>
     </Stack>
   );
 };
 
-export default AwaitingSubscription;
+export default SubscriptionConfirmationMissingEmail;

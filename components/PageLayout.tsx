@@ -6,10 +6,13 @@ import SubscribeModal from "./subscribe/SubscribeModal";
 
 interface Props {
   children: React.ReactNode;
+  modalVisibleDefault?: boolean;
 }
 
-export default function PageLayout({ children }: Props) {
-  const [modalVisible, setModalVisible] = useState(false);
+export default function PageLayout({ children, modalVisibleDefault }: Props) {
+  const [modalVisible, setModalVisible] = useState(
+    modalVisibleDefault || false
+  );
 
   return (
     <>

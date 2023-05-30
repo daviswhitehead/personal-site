@@ -2,13 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Box, Modal, Stack } from "native-base";
 import { trackEvent, composeAction } from "../../lib/gtag";
 import { categories, actions, objects } from "../../lib/analyticsDefinitions";
-import { getAuth, sendSignInLinkToEmail } from "firebase/auth";
+import {
+  getAuth,
+  sendSignInLinkToEmail,
+  isSignInWithEmailLink,
+  signInWithEmailLink,
+} from "firebase/auth";
 import { actionCodeSettings } from "../../lib/firebaseConfig";
 import AwaitingSubscription from "./AwaitingSubscription";
 import SendingSubscriptionRequest from "./SendingSubscriptionRequest";
 import SubscriptionRequestSuccess from "./SubscriptionRequestSuccess";
 import SubscriptionRequestFail from "./SubscriptionRequestFail";
+import SubscriptionConfirmationSuccess from "./SubscriptionConfirmationSuccess";
+import SubscriptionConfirmationMissingEmail from "./SubscriptionConfirmationMissingEmail";
 import { space } from "styling/spacing";
+import { useRouter } from "next/router";
 
 // https://github.com/anirudhvsp/hack-with-nativebase-tradebook/blob/f3eb8ed69f0f3c0a450bfd49257742f1f01395dd/page/Login.jsx
 
@@ -18,10 +26,16 @@ interface Props {
 }
 
 type SubscriptionState =
+  | "LOADING"
+  | "AWAITING_CONFIRMATION"
+  | "SUBSCRIPTION_CONFIRMATION_SUCCESS"
+  | "SUBSCRIPTION_CONFIRMATION_MISSING_EMAIL"
+  | "SUBSCRIPTION_CONFIRMATION_FAIL"
   | "AWAITING_SUBCRIPTION"
   | "SENDING_SUBSCRIPTION_REQUEST"
   | "SUBSCRIPTION_REQUEST_SUCCESS"
-  | "SUBSCRIPTION_REQUEST_FAIL";
+  | "SUBSCRIPTION_REQUEST_FAIL"
+  | "FAIL";
 
 export default function SubscribeModal(props: Props) {
   // modal positioning
@@ -47,41 +61,106 @@ export default function SubscribeModal(props: Props) {
   }, [props.modalVisible]);
 
   // subscription state
-  const [email, setEmail] = useState("");
-  const [errorCode, setErrorCode] = useState("");
+  const auth = getAuth();
+  const router = useRouter();
 
-  const [subscriptionState, setsubscriptionState] = useState<SubscriptionState>(
-    "AWAITING_SUBCRIPTION"
+  const [email, setEmail] = useState("");
+  const [confirmationEmailSet, setConfirmationEmailSet] = useState(false);
+  const [retry, setRetry] = useState(false);
+  const [errorCode, setErrorCode] = useState("");
+  const [subscriptionState, setSubscriptionState] = useState<SubscriptionState>(
+    "LOADING"
+    // "SUBSCRIPTION_REQUEST_FAIL"
   );
-  // console.log("subscriptionState", subscriptionState);
+  const resetState = () => {
+    setEmail("");
+    setConfirmationEmailSet(false);
+    setRetry(false);
+    setErrorCode("");
+  };
+
+  console.log("subscriptionState", subscriptionState);
+
+  useEffect(() => {
+    // Check if the link is a sign-in with email link.
+    if (router.isReady) {
+      if (isSignInWithEmailLink(auth, router.asPath) && !retry) {
+        // Additional state parameters can also be passed via URL.
+        // This can be used to continue the user's intended action before triggering
+        // the sign-in operation.
+        // Get the email if available. This should be available if the user completes
+        // the flow on the same device where they started it.
+        const storageEmail = window.localStorage.getItem("emailForSignIn");
+
+        storageEmail
+          ? () => {
+              setEmail(storageEmail);
+              setConfirmationEmailSet(true);
+            }
+          : // User opened the link on a different device. To prevent session fixation
+            // attacks, ask the user to provide the associated email again. For example:
+            setSubscriptionState("SUBSCRIPTION_CONFIRMATION_MISSING_EMAIL");
+
+        if (email && confirmationEmailSet) {
+          // The client SDK will parse the code from the link for you.
+          signInWithEmailLink(auth, email, router.asPath)
+            .then(() => {
+              setSubscriptionState("SUBSCRIPTION_CONFIRMATION_SUCCESS");
+              window.localStorage.removeItem("emailForSignIn");
+              // You can access the new user via result.user
+              // Additional user info profile not available via:
+              // result.additionalUserInfo.profile == null
+              // You can check if the user is new or existing:
+              // result.additionalUserInfo.isNewUser
+            })
+            .catch((error) => {
+              // Some error occurred, you can inspect the code: error.code
+              // Common errors could be invalid email and invalid or expired OTPs.
+              setSubscriptionState("SUBSCRIPTION_CONFIRMATION_FAIL");
+              setErrorCode(error.code);
+            });
+        }
+      } else {
+        setSubscriptionState("AWAITING_SUBCRIPTION");
+      }
+    }
+  }, [auth, router, confirmationEmailSet, email, retry]);
 
   const onSubmit = () => {
-    setsubscriptionState("SENDING_SUBSCRIPTION_REQUEST");
-    const auth = getAuth();
+    setSubscriptionState("SENDING_SUBSCRIPTION_REQUEST");
     sendSignInLinkToEmail(auth, email, actionCodeSettings)
       .then(() => {
         // The link was successfully sent. Inform the user.
-        setsubscriptionState("SUBSCRIPTION_REQUEST_SUCCESS");
+        setSubscriptionState("SUBSCRIPTION_REQUEST_SUCCESS");
 
         // Save the email locally so you don't need to ask the user for it again
         // if they open the link on the same device.
         window.localStorage.setItem("emailForSignIn", email);
       })
       .catch((error) => {
-        setsubscriptionState("SUBSCRIPTION_REQUEST_FAIL");
-
+        setSubscriptionState("SUBSCRIPTION_REQUEST_FAIL");
         setErrorCode(error.code);
         // const errorMessage = error.message;
       });
+  };
+
+  const onSubmitMissingEmail = () => {
+    setConfirmationEmailSet(true);
   };
 
   const onTextChange = (text: string) => {
     setEmail(text);
   };
 
-  const tryAgain = () => {
-    // to do
-    console.log("hellow");
+  const onRetry = () => {
+    resetState();
+    setRetry(true);
+    setSubscriptionState("AWAITING_SUBCRIPTION");
+  };
+
+  const onTimeout = () => {
+    resetState();
+    setSubscriptionState("FAIL");
   };
 
   const renderChild = (subscriptionState: SubscriptionState) => {
@@ -97,8 +176,10 @@ export default function SubscribeModal(props: Props) {
             email={email}
           />
         );
+      case "LOADING":
       case "SENDING_SUBSCRIPTION_REQUEST":
-        return <SendingSubscriptionRequest />;
+      case "AWAITING_CONFIRMATION":
+        return <SendingSubscriptionRequest onTimeout={onTimeout} />;
       case "SUBSCRIPTION_REQUEST_SUCCESS":
         return (
           <SubscriptionRequestSuccess
@@ -108,11 +189,27 @@ export default function SubscribeModal(props: Props) {
             email={email}
           />
         );
+      case "FAIL":
       case "SUBSCRIPTION_REQUEST_FAIL":
+      case "SUBSCRIPTION_CONFIRMATION_FAIL":
         return (
-          <SubscriptionRequestFail
-            onTryAgain={tryAgain}
-            errorCode={errorCode}
+          <SubscriptionRequestFail onRetry={onRetry} errorCode={errorCode} />
+        );
+      case "SUBSCRIPTION_CONFIRMATION_SUCCESS":
+        return (
+          <SubscriptionConfirmationSuccess
+            onDone={() => {
+              props.setModalVisible(false);
+            }}
+            email={email}
+          />
+        );
+      case "SUBSCRIPTION_CONFIRMATION_MISSING_EMAIL":
+        return (
+          <SubscriptionConfirmationMissingEmail
+            onSubmit={onSubmitMissingEmail}
+            onTextChange={onTextChange}
+            email={email}
           />
         );
       default:
