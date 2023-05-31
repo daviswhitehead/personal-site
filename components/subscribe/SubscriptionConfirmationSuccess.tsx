@@ -26,7 +26,7 @@ const SubscriptionRequestSuccess = ({
           fontSize="md"
           textAlign="center"
         >
-          You are subscribed!
+          {`Nice, you're subscribed!`}
         </Text>
         <Text
           fontFamily="body"
@@ -34,8 +34,7 @@ const SubscriptionRequestSuccess = ({
           fontSize="sm"
           textAlign="center"
         >
-          TO DO We sent an email to {email} with a confirmation link. Click the
-          link to finish your subscription.
+          Expect to receive updates from Davis a few times a month at {email}.
         </Text>
       </VStack>
       <VStack space={space.md}>

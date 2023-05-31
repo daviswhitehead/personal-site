@@ -37,28 +37,31 @@ type SubscriptionState =
   | "SUBSCRIPTION_REQUEST_FAIL"
   | "FAIL";
 
-export default function SubscribeModal(props: Props) {
+export default function SubscribeModal({
+  modalVisible,
+  setModalVisible,
+}: Props) {
   // modal positioning
   const [scrollPosition, setScrollPosition] = useState(0);
   const [windowHeight, setWindowHeight] = useState(0);
   useEffect(() => {
     const html = document.querySelector("html");
     if (html) {
-      html.style.overflow = props.modalVisible ? "hidden" : "auto";
+      html.style.overflow = modalVisible ? "hidden" : "auto";
       setScrollPosition(window.pageYOffset);
       setWindowHeight(window.innerHeight);
     }
-  }, [props.modalVisible]);
+  }, [modalVisible]);
 
   // analytics
   useEffect(() => {
-    if (props.modalVisible) {
+    if (modalVisible) {
       trackEvent({
         action: composeAction(actions.VIEW, objects.SUBSCRIBE_MODAL),
         category: categories.SUBSCRIBE,
       });
     }
-  }, [props.modalVisible]);
+  }, [modalVisible]);
 
   // subscription state
   const auth = getAuth();
@@ -70,7 +73,7 @@ export default function SubscribeModal(props: Props) {
   const [errorCode, setErrorCode] = useState("");
   const [subscriptionState, setSubscriptionState] = useState<SubscriptionState>(
     "LOADING"
-    // "SUBSCRIPTION_REQUEST_FAIL"
+    // "SUBSCRIPTION_CONFIRMATION_SUCCESS"
   );
   const resetState = () => {
     setEmail("");
@@ -85,21 +88,29 @@ export default function SubscribeModal(props: Props) {
     // Check if the link is a sign-in with email link.
     if (router.isReady) {
       if (isSignInWithEmailLink(auth, router.asPath) && !retry) {
+        setModalVisible(true);
+        console.log("isSignInWithEmailLink");
+
         // Additional state parameters can also be passed via URL.
         // This can be used to continue the user's intended action before triggering
         // the sign-in operation.
         // Get the email if available. This should be available if the user completes
         // the flow on the same device where they started it.
         const storageEmail = window.localStorage.getItem("emailForSignIn");
+        console.log("storageEmail", storageEmail);
 
-        storageEmail
-          ? () => {
-              setEmail(storageEmail);
-              setConfirmationEmailSet(true);
-            }
-          : // User opened the link on a different device. To prevent session fixation
-            // attacks, ask the user to provide the associated email again. For example:
-            setSubscriptionState("SUBSCRIPTION_CONFIRMATION_MISSING_EMAIL");
+        if (storageEmail) {
+          setEmail(storageEmail);
+          setConfirmationEmailSet(true);
+        } else {
+          // User opened the link on a different device. To prevent session fixation
+          // attacks, ask the user to provide the associated email again. For example:
+
+          setSubscriptionState("SUBSCRIPTION_CONFIRMATION_MISSING_EMAIL");
+        }
+
+        console.log("email", email);
+        console.log("confirmationEmailSet", confirmationEmailSet);
 
         if (email && confirmationEmailSet) {
           // The client SDK will parse the code from the link for you.
@@ -124,7 +135,7 @@ export default function SubscribeModal(props: Props) {
         setSubscriptionState("AWAITING_SUBCRIPTION");
       }
     }
-  }, [auth, router, confirmationEmailSet, email, retry]);
+  }, [auth, router, confirmationEmailSet, email, retry, setModalVisible]);
 
   const onSubmit = () => {
     setSubscriptionState("SENDING_SUBSCRIPTION_REQUEST");
@@ -171,7 +182,7 @@ export default function SubscribeModal(props: Props) {
             onSubmit={onSubmit}
             onTextChange={onTextChange}
             onCancel={() => {
-              props.setModalVisible(false);
+              setModalVisible(false);
             }}
             email={email}
           />
@@ -184,7 +195,7 @@ export default function SubscribeModal(props: Props) {
         return (
           <SubscriptionRequestSuccess
             onDone={() => {
-              props.setModalVisible(false);
+              setModalVisible(false);
             }}
             email={email}
           />
@@ -199,7 +210,7 @@ export default function SubscribeModal(props: Props) {
         return (
           <SubscriptionConfirmationSuccess
             onDone={() => {
-              props.setModalVisible(false);
+              setModalVisible(false);
             }}
             email={email}
           />
@@ -219,8 +230,8 @@ export default function SubscribeModal(props: Props) {
 
   return (
     <Modal
-      isOpen={props.modalVisible}
-      onClose={() => props.setModalVisible(false)}
+      isOpen={modalVisible}
+      onClose={() => setModalVisible(false)}
       avoidKeyboard
       size="full"
       _backdrop={{

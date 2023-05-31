@@ -31,7 +31,7 @@ const SubscriptionConfirmationMissingEmail = ({
           fontSize="md"
           textAlign="center"
         >
-          Oops, we lost your email
+          Blarg, we lost your email
         </Text>
         <Text
           fontFamily="body"
