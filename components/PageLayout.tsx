@@ -35,7 +35,10 @@ export default function PageLayout({ children, modalVisibleDefault }: Props) {
             modalVisible={modalVisible}
             setModalVisible={setModalVisible}
           />
-          {children}
+          {/* {children} */}
+          {typeof children !== "function"
+            ? children
+            : children({ modalVisible, setModalVisible })}
           <Footer />
         </Box>
       </Box>

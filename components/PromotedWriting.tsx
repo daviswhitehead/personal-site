@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Image, Stack, useBreakpointValue, Box } from "native-base";
 import LinkWithIcon from "./LinkWithIcon";
-import SubscribeModal from "./subscribe/SubscribeModal";
 import routes from "lib/routes";
 import CardWriting from "./CardWriting";
 import digitalBookLibrary from "../public/images/digitalBookLibrary.png";
@@ -14,9 +13,15 @@ import { space } from "../styling/spacing";
 import H2 from "./typeography/H2";
 import Body from "./typeography/Body";
 
-export default function Promoted() {
-  const [modalVisible, setModalVisible] = useState(false);
+interface Props {
+  modalVisible: boolean;
+  setModalVisible: (value: boolean) => void;
+}
 
+export default function PromotedWriting({
+  modalVisible,
+  setModalVisible,
+}: Props) {
   return (
     <Stack
       px={space.lg}
@@ -97,10 +102,6 @@ export default function Promoted() {
           setModalVisible(!modalVisible);
         }}
         copy="Subscribe to stay up to date"
-      />
-      <SubscribeModal
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
       />
     </Stack>
   );

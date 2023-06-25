@@ -82,14 +82,11 @@ export default function SubscribeModal({
     setErrorCode("");
   };
 
-  console.log("subscriptionState", subscriptionState);
-
   useEffect(() => {
     // Check if the link is a sign-in with email link.
     if (router.isReady) {
       if (isSignInWithEmailLink(auth, router.asPath) && !retry) {
         setModalVisible(true);
-        console.log("isSignInWithEmailLink");
 
         // Additional state parameters can also be passed via URL.
         // This can be used to continue the user's intended action before triggering
@@ -97,7 +94,6 @@ export default function SubscribeModal({
         // Get the email if available. This should be available if the user completes
         // the flow on the same device where they started it.
         const storageEmail = window.localStorage.getItem("emailForSignIn");
-        console.log("storageEmail", storageEmail);
 
         if (storageEmail) {
           setEmail(storageEmail);
@@ -108,9 +104,6 @@ export default function SubscribeModal({
 
           setSubscriptionState("SUBSCRIPTION_CONFIRMATION_MISSING_EMAIL");
         }
-
-        console.log("email", email);
-        console.log("confirmationEmailSet", confirmationEmailSet);
 
         if (email && confirmationEmailSet) {
           // The client SDK will parse the code from the link for you.
