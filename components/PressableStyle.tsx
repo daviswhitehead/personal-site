@@ -9,7 +9,7 @@ interface Props {
   target?: string;
 }
 
-export default function SubscribeModal({ children, ...props }: Props) {
+export default function PressableStyle({ children, ...props }: Props) {
   const child = Children.only(children) as React.ReactElement;
 
   const handlePress = (url: string) => {

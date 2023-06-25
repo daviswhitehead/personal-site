@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import { Box, useBreakpointValue } from "native-base";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import SubscribeModal from "../components/SubscribeModal";
+import SubscribeModal from "./subscribe/SubscribeModal";
 
 interface Props {
   children: React.ReactNode;
+  modalVisibleDefault?: boolean;
 }
 
-export default function PageLayout({ children }: Props) {
-  const [modalVisible, setModalVisible] = useState(false);
+export default function PageLayout({ children, modalVisibleDefault }: Props) {
+  const [modalVisible, setModalVisible] = useState(
+    modalVisibleDefault || false
+  );
 
   return (
     <>
@@ -32,7 +35,10 @@ export default function PageLayout({ children }: Props) {
             modalVisible={modalVisible}
             setModalVisible={setModalVisible}
           />
-          {children}
+          {/* {children} */}
+          {typeof children !== "function"
+            ? children
+            : children({ modalVisible, setModalVisible })}
           <Footer />
         </Box>
       </Box>

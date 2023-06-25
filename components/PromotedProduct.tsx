@@ -120,12 +120,12 @@ export default function Promoted() {
         <Body py={{ base: "2", md: "4" }}>
           My expertise is in digital, consumer products. I specialize in
           understanding problems people have, then developing a product that
-          delightfully solves their problems. I aspire to create innovative
-          products that benefit a user so much they can’t stop talking about it.
+          delightfully meets their needs. I aspire to create innovative products
+          that benefit a user so much they can’t stop talking about it.
         </Body>
         <LinkWithIcon
           url={routes.PRODUCTS.path}
-          copy="Checkout more products"
+          copy="Discover more great products"
         />
         <LinkWithIcon url={routes.PATRON.path} copy="Become a patron" />
       </VStack>
