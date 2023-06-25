@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Image, Stack, useBreakpointValue, Box } from "native-base";
 import LinkWithIcon from "./LinkWithIcon";
-import SubscribeModal from "./SubscribeModal";
 import routes from "lib/routes";
 import CardWriting from "./CardWriting";
 import digitalBookLibrary from "../public/images/digitalBookLibrary.png";
@@ -14,9 +13,15 @@ import { space } from "../styling/spacing";
 import H2 from "./typeography/H2";
 import Body from "./typeography/Body";
 
-export default function Promoted() {
-  const [modalVisible, setModalVisible] = useState(false);
+interface Props {
+  modalVisible: boolean;
+  setModalVisible: (value: boolean) => void;
+}
 
+export default function PromotedWriting({
+  modalVisible,
+  setModalVisible,
+}: Props) {
   return (
     <Stack
       px={space.lg}
@@ -80,11 +85,11 @@ export default function Promoted() {
         </Stack>
       </Box>
       <Body py={space.md}>
-        I write thoughts and ideas loosely related to living a well-lived life.
-        Some posts are product pitches or critiques, others are about
-        experiments in living, and some are deeply personal. My goals in writing
-        are to build an engaged community to create products for, to think
-        critically, and to live transparently. I’d love to hear your feedback.
+        I write about living intentionally. Some posts are products pitches,
+        others are about experiments in living, and some are deeply personal. My
+        goals in writing are to build an engaged community to create products
+        for, to think critically, and to live transparently. I’d love to hear
+        your feedback.
       </Body>
       <LinkWithIcon url={routes.WRITING.path} copy="Explore more writing" />
       <LinkWithIcon
@@ -92,15 +97,11 @@ export default function Promoted() {
           trackEvent({
             action: composeAction(actions.PRESS, objects.SUBSCRIBE_LINK),
             category: categories.HOME,
-            label: "Subscribe to my newsletter",
+            label: "Subscribe to stay up to date",
           });
           setModalVisible(!modalVisible);
         }}
-        copy="Subscribe to my newsletter"
-      />
-      <SubscribeModal
-        modalVisible={modalVisible}
-        setModalVisible={setModalVisible}
+        copy="Subscribe to stay up to date"
       />
     </Stack>
   );

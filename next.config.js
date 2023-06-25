@@ -32,4 +32,8 @@ module.exports = withNativebase({
       return config;
     },
   },
+  env: {
+    NOTION_API_KEY: process.env.NOTION_API_KEY,
+  },
+  trailingSlash: true,
 });

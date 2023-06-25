@@ -45,7 +45,7 @@ export default function Footer() {
             <Text fontSize="sm">&copy; 2023</Text>
             <LinkWithIcon
               url={"https://github.com/daviswhitehead/daviswhitehead.com"}
-              copy="Checkout the source code"
+              copy="View the source code"
               target="_blank"
               fontSize="sm"
             />

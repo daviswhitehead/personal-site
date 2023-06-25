@@ -5,6 +5,7 @@ import Head from "next/head";
 import Script from "next/script";
 import { useRouter } from "next/router";
 import { GA_MEASUREMENT_ID, trackPageview } from "../lib/gtag";
+import "react-notion-x/src/styles.css";
 
 const config = {
   useSystemColorMode: false,
